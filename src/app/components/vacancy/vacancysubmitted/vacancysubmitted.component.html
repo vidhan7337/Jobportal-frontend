@@ -1,0 +1,43 @@
+<div class="container" style="margin-top: 20px;">
+    
+    <h1>Your Submitted Vacancies</h1>
+    
+    <p-table [value]="vacancyList" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [rowsPerPageOptions]="[10,25,50]">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Date</th>
+                <th>No of Vacancies</th>
+                <th>Minimum Qualification</th>
+                <th>Job Description</th>
+                <th>Last Date</th>
+                <th>Experience Required</th>
+                <th>Min salary</th>
+                <th>Max salary</th>
+                <th>Options</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-vacancy>
+            <tr >
+                <td>{{vacancy.publishedDate | date:'d/M/yyyy'}}</td>
+                <td>{{vacancy.noOfVacancies}}</td>
+                <td>{{vacancy.minimumQualification}}</td>
+                <td>{{vacancy.jobDescription}}</td>
+                <td>{{vacancy.lastDate | date:'d/M/yyyy'}}</td>
+                <td>{{vacancy.experienceRequired}}</td>
+                <td>{{vacancy.minSalary}}</td>
+                <td>{{vacancy.maxSalary}}</td>
+                <td>
+                    <a pButton pRipple type="button" [routerLink]="['/updatevacancy',vacancy.id]" icon="pi pi user-edit"
+                        class="p-button-rounded"></a>
+                    <a pButton pRipple type="button" (click)="remove(vacancy.id)" style="margin-left: 20px;"
+                        icon="pi pi-trash" class="p-button-rounded"></a>
+                </td>
+            </tr>
+        </ng-template>
+        <!-- <ng-template pTemplate="paginatorleft">
+            <a [routerLink]="['/add-user']" class="btn btn-primary">Add New</a>
+        </ng-template> -->
+    </p-table>
+</div>

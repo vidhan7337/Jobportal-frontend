@@ -1,0 +1,52 @@
+<mat-toolbar color="primary" class="app-header">
+  <div><a  target="_blank" class="positronx" routerLink="/dashboard" routerLinkActive="active">Job Portal</a>
+    
+    <button type="submit" routerLink="/addvacancy" routerLinkActive="active"   mat-button>Add Vacancy</button>
+  </div>
+  <span class="nav-tool-items">
+    <a mat-button routerLink="/changepassword" routerLinkActive="active" >Change Password</a>
+    <button type="submit" mat-button (click)="onSubmit();">Logout</button>
+    <!-- <a mat-button routerLink="/login" routerLinkActive="active" (ngSubmit)="onSubmit()" >Logout</a> -->
+  </span>
+</mat-toolbar>
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <div class="profile">
+    
+    <header>
+      <h1>About Your
+        <small>Company</small></h1>
+    </header>
+    
+    
+    <main>
+      <dl>
+        <dt>Organization</dt>
+          <dd>{{employer.organization}}</dd>
+        <dt>Start Year</dt>
+          <dd>{{employer.startYear |date :'mediumDate'}}</dd>
+        <dt>Organization Type</dt>
+          <dd>{{employer.organizationType}}</dd>
+        <dt>About</dt>
+          <dd>{{employer.about}}</dd>
+        <dt>No of Employees</dt>
+          <dd>{{employer.noOfEmployees}}</dd>
+        <dt>Email</dt>
+          <dd>{{employer.companyEmail}}</dd>
+        <dt>Phone</dt>
+          <dd>
+            {{employer.companyPhone}}</dd>
+      </dl>
+    </main>
+    <div class="mb-1">
+      <div class="btn-group" role="group" aria-label="Basic example">
+          <button (click)="update()" class="btn btn-primary" type="button">
+            Update Profile </button>
+         
+      </div>
+    </div>
+  </div> 
+</div>
+
+ <!-- end profile -->
+  
+  

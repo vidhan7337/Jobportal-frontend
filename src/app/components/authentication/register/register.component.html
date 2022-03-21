@@ -1,0 +1,46 @@
+<mat-toolbar color="primary" class="app-header">
+  <div><a href="https://www.positronx.io" target="_blank" class="positronx">Job Portal</a></div>
+  <span class="nav-tool-items">
+    <a mat-button routerLink="/login" routerLinkActive="active">Log in</a>
+    <a mat-button mat-raised-button routerLink="/register" routerLinkActive="active">Register</a>
+  </span>
+</mat-toolbar>
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>Register</mat-card-title>
+    </mat-card-header>
+    <form [formGroup]="registerForm" class="example-form" (ngSubmit)="onSubmit()">
+      <mat-card-content>
+        <mat-form-field class="example-full-width">
+          <input formControlName="userName" matInput placeholder="Username">
+
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input formControlName="fullName" matInput placeholder="Fullname">
+          
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input formControlName="email" matInput placeholder="Email">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input formControlName="phone" matInput placeholder="Phone" [maxLength]="10" [minlength]="10">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input formControlName="password" matInput placeholder="Password" [type]="hide ? 'password' : 'text'">
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </mat-form-field>
+    
+          <label>Choose a role : </label>
+      
+        <mat-radio-group aria-label="Select an option" [formControl]="userType">
+          <mat-radio-button value="Employer">Employer</mat-radio-button>
+          <mat-radio-button value="JobSeeker">JobSeeker</mat-radio-button>
+        </mat-radio-group>
+
+      </mat-card-content>
+      <button type="submit" mat-stroked-button color="accent" class="btn-block"
+        [disabled]="!registerForm.valid">Register</button>
+    </form>
+  </mat-card>
+</div>
