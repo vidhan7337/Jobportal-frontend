@@ -58,4 +58,8 @@ export class UserService {
     return this.httpClient.put<any>(this.baseUrl+"/changepassword/" + id, body, httpOptions);
 
   }
+
+  public getpassword(id:number){
+    return this.httpClient.get<any>(this.baseUrl+"/getpassword/"+id);
+  }
 }

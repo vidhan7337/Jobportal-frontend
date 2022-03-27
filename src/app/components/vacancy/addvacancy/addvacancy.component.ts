@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { VacancyService } from 'src/app/services/vacancy.service';
 import { EmployerService } from '../../../services/employer.service';
 import { DatePipe } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-addvacancy',
@@ -15,12 +16,14 @@ export class AddvacancyComponent implements OnInit {
   vacancyform: FormGroup;
   employer: any;
   date=new Date();
+  loading=false;
   constructor(
     private router: Router,
     private fb: FormBuilder,
     private empService: EmployerService,
     private vacancyServuce: VacancyService,
-    public datepipe: DatePipe
+    public datepipe: DatePipe,
+    private toastr:ToastrService
   ) {
     this.vacancyform = this.fb.group({
       // PublishedBy: ['', [Validators.required]],
@@ -39,25 +42,33 @@ export class AddvacancyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.loading=true
     this.empService.getemployer().subscribe((data) => {
-
+      
       console.log(data)
       this.employer = data
+      this.loading=false
     }, error => {
-
+      this.toastr.warning("Something went wrong")
+      this.loading=false
 
     });
   }
 
 
   save() {
+    this.loading=true
     let x=this.datepipe.transform(this.date, 'yyyy-MM-dd');
     if (this.vacancyform.invalid) {// true if any form validation fail
       return
+     
 
-
-    } else {
+    }else if(this.vacancyform.controls['MaxSalary'].value<this.vacancyform.controls['MinSalary'].value){
+      this.loading=false
+      this.toastr.error("Maximum salary cannot be less than minimum salary")
+     
+    }
+    else {
       // on Update User info
       this.vacancyServuce.addvacancy(
         this.employer.organization,
@@ -72,8 +83,12 @@ export class AddvacancyComponent implements OnInit {
 
       ).subscribe((data)=>{
         console.log("response",data);
+        this.loading=false
+        this.toastr.info("Vacancy Added")
         this.router.navigate(['dashboard']);
       },error=>{
+        this.loading=false
+        this.toastr.warning("Something went wrong")
         console.log("error",error)
       })
 
@@ -82,7 +97,7 @@ export class AddvacancyComponent implements OnInit {
   onSubmit=  () => {
     
      
-    
+    this.toastr.info("Logout successful")
 
     this.router.navigate(['/login']);
     window.localStorage.removeItem("email");

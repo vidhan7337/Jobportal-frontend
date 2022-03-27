@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { EmployerService } from 'src/app/services/employer.service';
 
 
@@ -12,13 +13,16 @@ import { EmployerService } from 'src/app/services/employer.service';
 export class EmployerprofileComponent implements OnInit {
 
   employer:any;
-  constructor(private router:Router,private empService:EmployerService) { 
+  loading=false;
+  constructor(private router:Router,private empService:EmployerService,private toastr:ToastrService) { 
+    this.loading=true;
     this.empService.getemployer().subscribe((data)=>{
       
       console.log(data)
        this.employer=data
+       this.loading=false;
    },error=>{
-   
+    this.toastr.warning("Something went wrong")
        
     
    
@@ -35,7 +39,7 @@ export class EmployerprofileComponent implements OnInit {
     
      
     
-
+    this.toastr.info("Logout successful")
     this.router.navigate(['/login']);
     window.localStorage.removeItem("email");
     

@@ -9,7 +9,9 @@
     <!-- <a mat-button routerLink="/login" routerLinkActive="active" (ngSubmit)="onSubmit()" >Logout</a> -->
   </span>
 </mat-toolbar>
-<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+<div *ngIf="loading==true" class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <mat-spinner diameter="80" color="accent"></mat-spinner></div>
+<div *ngIf="loading==false" class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
   <div class="profile">
     
     <header>
@@ -23,7 +25,7 @@
         <dt>Organization</dt>
           <dd>{{employer.organization}}</dd>
         <dt>Start Year</dt>
-          <dd>{{employer.startYear |date :'mediumDate'}}</dd>
+          <dd>{{employer.startYear |date:'d/M/yyyy'}}</dd>
         <dt>Organization Type</dt>
           <dd>{{employer.organizationType}}</dd>
         <dt>About</dt>

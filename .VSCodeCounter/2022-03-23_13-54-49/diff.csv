@@ -1,0 +1,17 @@
+"filename", "language", "JSON with Comments", "JSON", "Markdown", "TypeScript", "CSS", "JavaScript", "HTML", "comment", "blank", "total"
+"d:\synoptek\dotnet training\Exercise\Frontend\job-portalweb\README.md", "Markdown", 0, 0, -14, 0, 0, 0, 0, 0, -14, -28
+"d:\synoptek\dotnet training\Exercise\Frontend\job-portalweb\angular.json", "JSON", 0, -113, 0, 0, 0, 0, 0, 0, -1, -114
+"d:\synoptek\dotnet training\Exercise\Frontend\job-portalweb\karma.conf.js", "JavaScript", 0, 0, 0, 0, 0, -37, 0, -6, -2, -45
+"d:\synoptek\dotnet training\Exercise\Frontend\job-portalweb\package-lock.json", "JSON", 0, -8444, 0, 0, 0, 0, 0, 0, -1, -8445
+"d:\synoptek\dotnet training\Exercise\Frontend\job-portalweb\package.json", "JSON", 0, -46, 0, 0, 0, 0, 0, 0, -1, -47
+"d:\synoptek\dotnet training\Exercise\Frontend\job-portalweb\src\environments\environment.prod.ts", "TypeScript", 0, 0, 0, -3, 0, 0, 0, 0, -1, -4
+"d:\synoptek\dotnet training\Exercise\Frontend\job-portalweb\src\environments\environment.ts", "TypeScript", 0, 0, 0, -3, 0, 0, 0, -11, -3, -17
+"d:\synoptek\dotnet training\Exercise\Frontend\job-portalweb\src\index.html", "HTML", 0, 0, 0, 0, 0, 0, -16, 0, -1, -17
+"d:\synoptek\dotnet training\Exercise\Frontend\job-portalweb\src\main.ts", "TypeScript", 0, 0, 0, -9, 0, 0, 0, 0, -4, -13
+"d:\synoptek\dotnet training\Exercise\Frontend\job-portalweb\src\polyfills.ts", "TypeScript", 0, 0, 0, -1, 0, 0, 0, -47, -6, -54
+"d:\synoptek\dotnet training\Exercise\Frontend\job-portalweb\src\styles.css", "CSS", 0, 0, 0, 0, -93, 0, 0, -1, -2, -96
+"d:\synoptek\dotnet training\Exercise\Frontend\job-portalweb\src\test.ts", "TypeScript", 0, 0, 0, -18, 0, 0, 0, -4, -5, -27
+"d:\synoptek\dotnet training\Exercise\Frontend\job-portalweb\tsconfig.app.json", "JSON", 0, -14, 0, 0, 0, 0, 0, -1, -1, -16
+"d:\synoptek\dotnet training\Exercise\Frontend\job-portalweb\tsconfig.json", "JSON with Comments", -31, 0, 0, 0, 0, 0, 0, -1, -1, -33
+"d:\synoptek\dotnet training\Exercise\Frontend\job-portalweb\tsconfig.spec.json", "JSON", 0, -17, 0, 0, 0, 0, 0, -1, -1, -19
+"Total", "-", -31, -8634, -14, -34, -93, -37, -16, -72, -44, -8975

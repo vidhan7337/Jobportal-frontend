@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+
 import { EmployerService } from 'src/app/services/employer.service';
+import { JobseekerService } from 'src/app/services/jobseeker.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,23 +13,51 @@ import { EmployerService } from 'src/app/services/employer.service';
 export class DashboardComponent implements OnInit {
 
   employer:any;
-  constructor(private router:Router,private empService:EmployerService) { 
+  jobseeker:any;
+  loading=false;
+  constructor(private router:Router,private empService:EmployerService,private jobseekerService:JobseekerService,private toastr:ToastrService) { 
     
    
   }
-   profileadded: boolean=false;
+   profileaddedemp: boolean=false;
+   profileaddedjs: boolean=false;
+   profile:string="Employer";
    
   ngOnInit(): void {
-    this.empService.getemployer().subscribe((data)=>{
-      this.profileadded=true;
-      console.log(data)
-       this.employer=data
-   },error=>{
-   
-       this.profileadded=false;
     
-   
-  });
+    if(window.localStorage.getItem('usertype')=="Employer"){
+      this.loading=true
+      this.profile="Employer";
+      this.empService.getemployer().subscribe((data)=>{
+        this.profileaddedemp=true;
+        
+        console.log(data)
+         this.employer=data
+         window.localStorage.setItem("org",this.employer.organization)
+         this.loading=false
+     },error=>{
+      this.toastr.warning("Please add your details first")
+         this.profileaddedemp=false;
+         this.loading=false
+    });
+    }else{
+      this.loading=true
+      this.profile="JobSeeker";
+      this.jobseekerService.getjobseekerprofile().subscribe((data)=>{
+        this.profileaddedjs=true;
+        
+        this.jobseeker=data
+        console.log(data)
+        window.localStorage.setItem('userid',data.id)
+        
+        this.loading=false
+      },error=>{
+        this.toastr.warning("Please add your details first")
+        this.profileaddedjs=false;
+        this.loading=false
+      })
+    }
+    
   
    
   }
@@ -34,7 +65,7 @@ export class DashboardComponent implements OnInit {
     
      
     
-
+    this.toastr.info("Logout successful")
     this.router.navigate(['/login']);
     window.localStorage.removeItem("email");
     

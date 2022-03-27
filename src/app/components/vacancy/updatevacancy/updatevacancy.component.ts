@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 import { EmployerService } from 'src/app/services/employer.service';
 import { VacancyService } from 'src/app/services/vacancy.service';
@@ -17,13 +18,15 @@ export class UpdatevacancyComponent implements OnInit {
   employer: any;
   vacancy:any;
   date=new Date();
+  loading=false;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
     private empService: EmployerService,
     private vacancyServuce: VacancyService,
-    public datepipe: DatePipe
+    public datepipe: DatePipe,
+    private toastr:ToastrService
   ) {
     this.vacancyform = this.fb.group({
       // PublishedBy: ['', [Validators.required]],
@@ -42,6 +45,7 @@ export class UpdatevacancyComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loading=true
     this.route.params.subscribe(params=>{
       this.id=params['id'];
       console.log(params['id'])
@@ -50,26 +54,38 @@ export class UpdatevacancyComponent implements OnInit {
 
       console.log(data)
       this.employer = data
+      this.loading=false
     }, error => {
       console.log(error)
+      this.toastr.warning("Something went wrong")
+      this.loading=false
 
     });
+    this.loading=true
     this.vacancyServuce.getvacancydetail(this.id).subscribe((data)=>{
       this.vacancy=data
       console.log(this.vacancy)
+      
+      this.loading=false
     },error=>{
       console.log(error)
+      this.toastr.warning("Something went wrong")
+      this.loading=false
     })
 
   }
 
 
   save(){
+    this.loading=false
     let x=this.datepipe.transform(this.date, 'yyyy-MM-dd');
     if (this.vacancyform.invalid) {// true if any form validation fail
       return
 
-    } else {
+    } else if(this.vacancyform.controls['MaxSalary'].value<this.vacancyform.controls['MinSalary'].value){
+      this.loading=false
+      this.toastr.error("Maximum salary cannot be less than minimum salary")
+    }else {
       // on Update User info
       this.vacancyServuce.updatevacancy(
         this.id,
@@ -84,9 +100,13 @@ export class UpdatevacancyComponent implements OnInit {
         this.vacancyform.controls['MaxSalary'].value,
 
       ).subscribe((data)=>{
+        this.loading=false
         console.log("response",data);
+        this.toastr.info("Vacancy Updated")
         this.router.navigate(['dashboard']);
       },error=>{
+        this.loading=false
+        this.toastr.warning("Something went wrong")
         console.log("error",error)
       })
 

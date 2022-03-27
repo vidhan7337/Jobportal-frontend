@@ -1,7 +1,8 @@
+<div *ngIf="profile=='Employer'">
 <mat-toolbar color="primary" class="app-header">
   <div><a  target="_blank" class="positronx" routerLink="/dashboard" routerLinkActive="active" >Job Portal</a>
-    <button *ngIf="profileadded==true" type="submit" routerLink="/employerprofile" routerLinkActive="active"   mat-button>Profile</button>
-    <button *ngIf="profileadded==true" type="submit" routerLink="/addvacancy" routerLinkActive="active"   mat-button>Add Vacancy</button>
+    <button *ngIf="profileaddedemp==true" type="submit" routerLink="/employerprofile" routerLinkActive="active"   mat-button>Profile</button>
+    <button *ngIf="profileaddedemp==true" type="submit" routerLink="/addvacancy" routerLinkActive="active"   mat-button>Add Vacancy</button>
   </div>
   <span class="nav-tool-items">
     <a mat-button routerLink="/changepassword" routerLinkActive="active" >Change Password</a>
@@ -9,8 +10,31 @@
     <!-- <a mat-button routerLink="/login" routerLinkActive="active" (ngSubmit)="onSubmit()" >Logout</a> -->
   </span>
 </mat-toolbar>
+<div *ngIf="loading==true" class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <mat-spinner diameter="80" color="accent"></mat-spinner></div>
 <div class="login-wrapper" >
-  <div *ngIf="profileadded==true"><app-vacancysubmitted></app-vacancysubmitted> </div>
+  <div *ngIf="profileaddedemp==true"><app-vacancysubmitted></app-vacancysubmitted> </div>
 
-  <div *ngIf="profileadded==false"><app-addemployerprofile></app-addemployerprofile></div>
-  </div>
+  <div *ngIf="profileaddedemp==false"><app-addemployerprofile></app-addemployerprofile></div>
+</div>
+</div>
+<div *ngIf="profile=='JobSeeker'">
+  <mat-toolbar color="primary" class="app-header">
+    <div><a  target="_blank" class="positronx" routerLink="/dashboard" routerLinkActive="active" >Job Portal</a>
+      <button *ngIf="profileaddedjs==true" type="submit" routerLink="/jobseekerprofile" routerLinkActive="active"   mat-button>Profile</button>
+      <!-- <button *ngIf="profileadded==true" type="submit" routerLink="/addvacancy" routerLinkActive="active"   mat-button>Add Vacancy</button> -->
+    </div>
+    <span class="nav-tool-items">
+      <a mat-button routerLink="/changepassword" routerLinkActive="active" >Change Password</a>
+      <button type="submit" mat-button (click)="onSubmit();">Logout</button>
+      <!-- <a mat-button routerLink="/login" routerLinkActive="active" (ngSubmit)="onSubmit()" >Logout</a> -->
+    </span>
+  </mat-toolbar>
+  <div *ngIf="loading==true" class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-spinner diameter="80" color="accent"></mat-spinner></div>
+  <div class="login-wrapper" >
+    <div *ngIf="profileaddedjs==true"><app-showvacancy></app-showvacancy> </div>
+  
+    <div *ngIf="profileaddedjs==false"><app-addprofilejobseeker></app-addprofilejobseeker></div>
+  </div>  
+</div>

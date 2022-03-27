@@ -1,10 +1,11 @@
 
-
-<div class="container">
+<div *ngIf="loading==true" class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-spinner diameter="80" color="accent"></mat-spinner></div>
+<div *ngIf="loading==false" class="container">
     <h1>Add your details</h1>
     <form [formGroup]="employerform" autocomplete="off">
         <div class="mb-1">
-            <label for="name" class="form-label">Organization</label>
+            <label for="name" class="form-label">Organization*</label>
             <div class="input-group has-validation">
                 <input type="text" #name [ngClass]="{'form-control': true, 'is-invalid': employerform.get('Organization')?.invalid &&
                 (employerform.get('Organization')?.dirty || employerform.get('Organization')?.touched)}" id="Organization" name="Organization"
@@ -15,56 +16,56 @@
             </div>
         </div>
         <div class="mb-1">
-            <label for="name" class="form-label">Organization Type</label>
+            <label for="name" class="form-label">Organization Type*</label>
             <div class="input-group has-validation">
                 <input type="text" #name [ngClass]="{'form-control': true, 'is-invalid': employerform.get('OrganizationType')?.invalid &&
                 (employerform.get('OrganizationType')?.dirty || employerform.get('OrganizationType')?.touched)}" id="OrganizationType" name="OrganizationType"
-                    formControlName="OrganizationType" placeholder="OrganizationType">
+                    formControlName="OrganizationType" placeholder="Organization Type">
                 <div class="invalid-feedback">
                     This field is required.
                 </div>
             </div>
         </div>
         <div class="mb-1">
-            <label for="name" class="form-label">Company Email</label>
+            <label for="name" class="form-label">Company Email*</label>
             <div class="input-group has-validation">
                 <input type="text" #name [ngClass]="{'form-control': true, 'is-invalid': employerform.get('CompanyEmail')?.invalid &&
                 (employerform.get('CompanyEmail')?.dirty || employerform.get('CompanyEmail')?.touched)}" id="CompanyEmail" name="CompanyEmail"
-                    formControlName="CompanyEmail" placeholder="CompanyEmail">
+                    formControlName="CompanyEmail" placeholder="Company Email">
                 <div class="invalid-feedback">
-                    This field is required.
+                    This field is required with proper email format.
                 </div>
             </div>
         </div>
         <div class="mb-1">
-            <label for="mobile" class="form-label">Company Phone</label>
+            <label for="mobile" class="form-label">Company Phone*</label>
             <div class="input-group has-validation">
-                <input type="number" maxlength="10" [ngClass]="{'form-control': true, 'is-invalid': employerform.get('CompanyPhone')?.invalid &&
+                <input type="number" min="0" oninput="validity.valid||(value='')" [ngClass]="{'form-control': true, 'is-invalid': employerform.get('CompanyPhone')?.invalid &&
                 (employerform.get('CompanyPhone')?.dirty || employerform.get('CompanyPhone')?.touched)}" id="CompanyPhone" name="CompanyPhone"
-                    formControlName="CompanyPhone" placeholder="CompanyPhone">
+                    formControlName="CompanyPhone" placeholder="Company Phone" minlength="10" maxlength="10">
                 <div class="invalid-feedback">
-                    This field is required.
+                    This field is required with 10 digits.
                 </div>
             </div>
         </div>
         <div class="mb-1">
-            <label for="name" class="form-label">No of Employees</label>
+            <label for="name" class="form-label">No of Employees*</label>
             <div class="input-group has-validation">
-                <input type="number" #name [ngClass]="{'form-control': true, 'is-invalid': employerform.get('NoOfEmployees')?.invalid &&
+                <input type="number" min="0" oninput="validity.valid||(value='')" #name [ngClass]="{'form-control': true, 'is-invalid': employerform.get('NoOfEmployees')?.invalid &&
                 (employerform.get('NoOfEmployees')?.dirty || employerform.get('NoOfEmployees')?.touched)}" id="NoOfEmployees" name="NoOfEmployees"
-                    formControlName="NoOfEmployees" placeholder="NoOfEmployees">
+                    formControlName="NoOfEmployees" placeholder="No Of Employees">
                 <div class="invalid-feedback">
                     This field is required.
                 </div>
             </div>
         </div>
         <div class="mb-1">
-            <label for="StartYear" class="form-label">Start Year</label>
-            <p-calendar [showIcon]="true" inputId="icon" formControlName="StartYear" [ngClass]="{'form-control': true, 'is-invalid': employerform.get('StartYear')?.invalid &&
+            <label for="StartYear" class="form-label">Start Year*</label>
+            <p-calendar [showIcon]="true" [maxDate]="date"  inputId="icon" formControlName="StartYear" [ngClass]="{'form-control': true, 'is-invalid': employerform.get('StartYear')?.invalid &&
             (employerform.get('StartYear')?.dirty || employerform.get('StartYear')?.touched)}" ></p-calendar>
         </div>
         <div class="mb-1">
-            <label for="name" class="form-label">About</label>
+            <label for="name" class="form-label">About*</label>
             <div class="input-group has-validation">
                 <input type="text" #name [ngClass]="{'form-control': true, 'is-invalid': employerform.get('About')?.invalid &&
                 (employerform.get('About')?.dirty || employerform.get('About')?.touched)}" id="About" name="About"

@@ -9,11 +9,14 @@ import { Employer } from '../models/employer';
 })
 export class EmployerService {
   baseUrl='https://localhost:44361/gateway/employer'
+  
+  httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json; charset=UTF-8','Authorization':'Bearer '+window.localStorage.getItem('token') }) };
   constructor(private httpClient: HttpClient) { }
 
   public getemployer(){
     let email=window.localStorage.getItem('email');
-    return this.httpClient.get(this.baseUrl+"/"+email);
+   
+    return this.httpClient.get(this.baseUrl+"/"+email,this.httpOptions);
   }
   public addemployer(Organization: string, OrganizationType: string, CompanyEmail: string, About: string, CompanyPhone: string, StartYear: string,NoOfEmployees:number) {
     const a = {
@@ -29,10 +32,10 @@ export class EmployerService {
     
     const body = JSON.stringify(a);
     console.log(body)
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json; charset=UTF-8' }) };
+    
 
 
-    return this.httpClient.post<any>(this.baseUrl, body, httpOptions);
+    return this.httpClient.post<any>(this.baseUrl, body,this.httpOptions);
   }
 
   public updatermployer(id:number,Organization: string, OrganizationType: string, CompanyEmail: string, About: string, CompanyPhone: string, StartYear: string,NoOfEmployees:number){
@@ -49,9 +52,14 @@ export class EmployerService {
 
     const body = JSON.stringify(a);
     console.log(body)
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json; charset=UTF-8' }) };
+    
 
 
-    return this.httpClient.put<any>(this.baseUrl+"/"+id, body, httpOptions)
+    return this.httpClient.put<any>(this.baseUrl+"/"+id, body, this.httpOptions)
+  }
+  public getemployerbyname(org:string){
+    
+    
+    return this.httpClient.get("https://localhost:44361/gateway/viewcompany/"+org,this.httpOptions);
   }
 }

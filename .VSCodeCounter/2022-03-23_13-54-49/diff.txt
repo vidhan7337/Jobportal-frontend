@@ -1,0 +1,48 @@
+Date : 2022-03-23 13:54:49
+Directory : d:\synoptek\dotnet training\Exercise\Frontend\job-portalweb\src\app
+Total : 15 files,  -8859 codes, -72 comments, -44 blanks, all -8975 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| Markdown           |          1 |        -14 |          0 |        -14 |        -28 |
+| HTML               |          1 |        -16 |          0 |         -1 |        -17 |
+| JSON with Comments |          1 |        -31 |         -1 |         -1 |        -33 |
+| TypeScript         |          5 |        -34 |        -62 |        -19 |       -115 |
+| JavaScript         |          1 |        -37 |         -6 |         -2 |        -45 |
+| CSS                |          1 |        -93 |         -1 |         -2 |        -96 |
+| JSON               |          5 |     -8,634 |         -2 |         -5 |     -8,641 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++--------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                             | files      | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                |         15 |     -8,859 |        -72 |        -44 |     -8,975 |
+| ..                                                                                               |         15 |     -8,859 |        -72 |        -44 |     -8,975 |
+| ..\..                                                                                            |          8 |     -8,716 |         -9 |        -22 |     -8,747 |
+| ..\environments                                                                                  |          2 |         -6 |        -11 |         -4 |        -21 |
++--------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++--------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                                                         | language           | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| d:\synoptek\dotnet training\Exercise\Frontend\job-portalweb\README.md                            | Markdown           |        -14 |          0 |        -14 |        -28 |
+| d:\synoptek\dotnet training\Exercise\Frontend\job-portalweb\angular.json                         | JSON               |       -113 |          0 |         -1 |       -114 |
+| d:\synoptek\dotnet training\Exercise\Frontend\job-portalweb\karma.conf.js                        | JavaScript         |        -37 |         -6 |         -2 |        -45 |
+| d:\synoptek\dotnet training\Exercise\Frontend\job-portalweb\package-lock.json                    | JSON               |     -8,444 |          0 |         -1 |     -8,445 |
+| d:\synoptek\dotnet training\Exercise\Frontend\job-portalweb\package.json                         | JSON               |        -46 |          0 |         -1 |        -47 |
+| d:\synoptek\dotnet training\Exercise\Frontend\job-portalweb\src\environments\environment.prod.ts | TypeScript         |         -3 |          0 |         -1 |         -4 |
+| d:\synoptek\dotnet training\Exercise\Frontend\job-portalweb\src\environments\environment.ts      | TypeScript         |         -3 |        -11 |         -3 |        -17 |
+| d:\synoptek\dotnet training\Exercise\Frontend\job-portalweb\src\index.html                       | HTML               |        -16 |          0 |         -1 |        -17 |
+| d:\synoptek\dotnet training\Exercise\Frontend\job-portalweb\src\main.ts                          | TypeScript         |         -9 |          0 |         -4 |        -13 |
+| d:\synoptek\dotnet training\Exercise\Frontend\job-portalweb\src\polyfills.ts                     | TypeScript         |         -1 |        -47 |         -6 |        -54 |
+| d:\synoptek\dotnet training\Exercise\Frontend\job-portalweb\src\styles.css                       | CSS                |        -93 |         -1 |         -2 |        -96 |
+| d:\synoptek\dotnet training\Exercise\Frontend\job-portalweb\src\test.ts                          | TypeScript         |        -18 |         -4 |         -5 |        -27 |
+| d:\synoptek\dotnet training\Exercise\Frontend\job-portalweb\tsconfig.app.json                    | JSON               |        -14 |         -1 |         -1 |        -16 |
+| d:\synoptek\dotnet training\Exercise\Frontend\job-portalweb\tsconfig.json                        | JSON with Comments |        -31 |         -1 |         -1 |        -33 |
+| d:\synoptek\dotnet training\Exercise\Frontend\job-portalweb\tsconfig.spec.json                   | JSON               |        -17 |         -1 |         -1 |        -19 |
+| Total                                                                                            |                    |     -8,859 |        -72 |        -44 |     -8,975 |
++--------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+

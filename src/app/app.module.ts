@@ -30,6 +30,21 @@ import { DatePipe } from '@angular/common';
 import { VacancysubmittedComponent } from './components/vacancy/vacancysubmitted/vacancysubmitted.component';
 import { UpdatevacancyComponent } from './components/vacancy/updatevacancy/updatevacancy.component';
 import { ShowvacancyComponent } from './components/vacancy/showvacancy/showvacancy.component';
+import { AddprofilejobseekerComponent } from './components/jobseeker/addprofilejobseeker/addprofilejobseeker.component';
+import { UpdateprofilejobseekerComponent } from './components/jobseeker/updateprofilejobseeker/updateprofilejobseeker.component';
+import { UpdatequalificationjobseekerComponent } from './components/jobseeker/updatequalificationjobseeker/updatequalificationjobseeker.component';
+import { AddqualificationjobseekerComponent } from './components/jobseeker/addqualificationjobseeker/addqualificationjobseeker.component';
+import { AddexperiencejobseekerComponent } from './components/jobseeker/addexperiencejobseeker/addexperiencejobseeker.component';
+import { UpdateexperiencejobseekerComponent } from './components/jobseeker/updateexperiencejobseeker/updateexperiencejobseeker.component';
+import { ShowprofilejobseekerComponent } from './components/jobseeker/showprofilejobseeker/showprofilejobseeker.component';
+import { ViewcompanyprofiletojobseekerComponent } from './components/jobseeker/viewcompanyprofiletojobseeker/viewcompanyprofiletojobseeker.component';
+import { ViewjobseekerprofiletoemployerComponent } from './components/employer/viewjobseekerprofiletoemployer/viewjobseekerprofiletoemployer.component';
+import { ViewvacancyrequetsComponent } from './components/employer/viewvacancyrequets/viewvacancyrequets.component';
+import { ToastrModule } from 'ngx-toastr';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+
+
 
 
 
@@ -49,7 +64,17 @@ import { ShowvacancyComponent } from './components/vacancy/showvacancy/showvacan
     UpdateemployerprofileComponent,
     VacancysubmittedComponent,
     UpdatevacancyComponent,
-    ShowvacancyComponent
+    ShowvacancyComponent,
+    AddprofilejobseekerComponent,
+    UpdateprofilejobseekerComponent,
+    UpdatequalificationjobseekerComponent,
+    AddqualificationjobseekerComponent,
+    AddexperiencejobseekerComponent,
+    UpdateexperiencejobseekerComponent,
+    ShowprofilejobseekerComponent,
+    ViewcompanyprofiletojobseekerComponent,
+    ViewjobseekerprofiletoemployerComponent,
+    ViewvacancyrequetsComponent
   ],
   imports: [
     BrowserModule,
@@ -63,8 +88,11 @@ import { ShowvacancyComponent } from './components/vacancy/showvacancy/showvacan
     ButtonModule,
     TableModule,
     CalendarModule,
-    SliderModule
-    
+    SliderModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    NgbModule
+
   ],
   providers: [
     DatePipe,

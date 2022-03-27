@@ -9,49 +9,51 @@
       <!-- <a mat-button routerLink="/login" routerLinkActive="active" (ngSubmit)="onSubmit()" >Logout</a> -->
     </span>
   </mat-toolbar>
-<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <div *ngIf="loading==true" class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-spinner diameter="80" color="accent"></mat-spinner></div>
+<div *ngIf="loading==false" class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
     <div class="container">
         <h1>Fill Vacancy Details </h1>
         <form [formGroup]="vacancyform" autocomplete="off">
             <div class="mb-1">
-                <label for="name" class="form-label">No of Vacancies</label>
+                <label for="name" class="form-label">No of Vacancies*</label>
                 <div class="input-group has-validation">
-                    <input type="number" #name [ngClass]="{'form-control': true, 'is-invalid': vacancyform.get('NoofVacancies')?.invalid &&
+                    <input type="number" min="1" oninput="validity.valid||(value='')" #name [ngClass]="{'form-control': true, 'is-invalid': vacancyform.get('NoofVacancies')?.invalid &&
                     (vacancyform.get('NoofVacancies')?.dirty || vacancyform.get('NoofVacancies')?.touched)}" id="NoofVacancies" name="NoofVacancies"
-                        formControlName="NoofVacancies" placeholder="NoofVacancies">
+                        formControlName="NoofVacancies" placeholder="No of Vacancies">
                     <div class="invalid-feedback">
                         This field is required.
                     </div>
                 </div>
             </div>
             <div class="mb-1">
-                <label for="name" class="form-label">Minimum Qualification</label>
+                <label for="name" class="form-label">Minimum Qualification*</label>
                 <div class="input-group has-validation">
                     <input type="text" #name [ngClass]="{'form-control': true, 'is-invalid': vacancyform.get('MinimumQualification')?.invalid &&
                     (vacancyform.get('MinimumQualification')?.dirty || vacancyform.get('MinimumQualification')?.touched)}" id="MinimumQualification" name="MinimumQualification"
-                        formControlName="MinimumQualification" placeholder="MinimumQualification">
+                        formControlName="MinimumQualification" placeholder="Minimum Qualification">
                     <div class="invalid-feedback">
                         This field is required.
                     </div>
                 </div>
             </div>
             <div class="mb-1">
-                <label for="name" class="form-label">Job Description</label>
+                <label for="name" class="form-label">Job Description*</label>
                 <div class="input-group has-validation">
                     <input type="text" #name [ngClass]="{'form-control': true, 'is-invalid': vacancyform.get('JobDescription')?.invalid &&
                     (vacancyform.get('JobDescription')?.dirty || vacancyform.get('JobDescription')?.touched)}" id="JobDescription" name="JobDescription"
-                        formControlName="JobDescription" placeholder="JobDescription">
+                        formControlName="JobDescription" placeholder="Job Description">
                     <div class="invalid-feedback">
                         This field is required.
                     </div>
                 </div>
             </div>
             <div class="mb-1">
-                <label for="name" class="form-label">Experience required in years</label>
+                <label for="name" class="form-label">Experience required in years*</label>
                 <div class="input-group has-validation">
-                    <input type="number" #name [ngClass]="{'form-control': true, 'is-invalid': vacancyform.get('ExperienceRequired')?.invalid &&
+                    <input type="number" min="0" oninput="validity.valid||(value='')" #name [ngClass]="{'form-control': true, 'is-invalid': vacancyform.get('ExperienceRequired')?.invalid &&
                     (vacancyform.get('ExperienceRequired')?.dirty || vacancyform.get('ExperienceRequired')?.touched)}" id="ExperienceRequired" name="ExperienceRequired"
-                        formControlName="ExperienceRequired" placeholder="ExperienceRequired">
+                        formControlName="ExperienceRequired" placeholder="Experience Required">
                     <div class="invalid-feedback">
                         This field is required.
                     </div>
@@ -60,28 +62,28 @@
             
             
             <div class="mb-1">
-                <label for="LastDate" class="form-label">Last Date</label>
-                <p-calendar [showIcon]="true" inputId="icon" formControlName="LastDate" [ngClass]="{'form-control': true, 'is-invalid': vacancyform.get('LastDate')?.invalid &&
+                <label for="LastDate" class="form-label">Last Date*</label>
+                <p-calendar [showIcon]="true" [minDate]="date" inputId="icon" formControlName="LastDate" [ngClass]="{'form-control': true, 'is-invalid': vacancyform.get('LastDate')?.invalid &&
                 (vacancyform.get('LastDate')?.dirty || vacancyform.get('LastDate')?.touched)}" ></p-calendar>
             </div>
     
             <div class="mb-1">
-                <label for="name" class="form-label">Min Salary</label>
+                <label for="name" class="form-label">Minimum Salary*</label>
                 <div class="input-group has-validation">
-                    <input type="number" #name [ngClass]="{'form-control': true, 'is-invalid': vacancyform.get('MinSalary')?.invalid &&
+                    <input type="number" min="0" oninput="validity.valid||(value='')" #name [ngClass]="{'form-control': true, 'is-invalid': vacancyform.get('MinSalary')?.invalid &&
                     (vacancyform.get('MinSalary')?.dirty || vacancyform.get('MinSalary')?.touched)}" id="MinSalary" name="MinSalary"
-                        formControlName="MinSalary" placeholder="MinSalary">
+                        formControlName="MinSalary" placeholder="Minimum Salary">
                     <div class="invalid-feedback">
                         This field is required.
                     </div>
                 </div>
             </div>
             <div class="mb-1">
-                <label for="name" class="form-label">Max Salary</label>
+                <label for="name" class="form-label">Maximum Salary*</label>
                 <div class="input-group has-validation">
-                    <input type="number" #name [ngClass]="{'form-control': true, 'is-invalid': vacancyform.get('MaxSalary')?.invalid &&
+                    <input type="number" min="0" oninput="validity.valid||(value='')" #name [ngClass]="{'form-control': true, 'is-invalid': vacancyform.get('MaxSalary')?.invalid &&
                     (vacancyform.get('MaxSalary')?.dirty || vacancyform.get('MaxSalary')?.touched)}" id="MaxSalary" name="MaxSalary"
-                        formControlName="MaxSalary" placeholder="MaxSalary">
+                        formControlName="MaxSalary" placeholder="Maximum Salary">
                     <div class="invalid-feedback">
                         This field is required.
                     </div>
