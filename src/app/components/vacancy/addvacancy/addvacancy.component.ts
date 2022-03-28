@@ -15,15 +15,15 @@ export class AddvacancyComponent implements OnInit {
 
   vacancyform: FormGroup;
   employer: any;
-  date=new Date();
-  loading=false;
+  date = new Date();
+  loading = false;
   constructor(
     private router: Router,
     private fb: FormBuilder,
     private empService: EmployerService,
     private vacancyServuce: VacancyService,
     public datepipe: DatePipe,
-    private toastr:ToastrService
+    private toastr: ToastrService
   ) {
     this.vacancyform = this.fb.group({
       // PublishedBy: ['', [Validators.required]],
@@ -36,43 +36,47 @@ export class AddvacancyComponent implements OnInit {
       MinSalary: ['', [Validators.required]],
       MaxSalary: ['', [Validators.required]]
     });
-     
+
 
 
   }
 
   ngOnInit(): void {
-    this.loading=true
+    this.loading = true
     this.empService.getemployer().subscribe((data) => {
-      
+
       console.log(data)
       this.employer = data
-      this.loading=false
+      this.loading = false
     }, error => {
-      this.toastr.warning("Something went wrong")
-      this.loading=false
-
+      if (error.status == 401) {
+        this.toastr.error("Session expired login again")
+      }
+      else {
+        this.toastr.warning("Something went wrong")
+        this.loading = false
+      }
     });
   }
 
 
   save() {
-    this.loading=true
-    let x=this.datepipe.transform(this.date, 'yyyy-MM-dd');
+    this.loading = true
+    let x = this.datepipe.transform(this.date, 'yyyy-MM-dd');
     if (this.vacancyform.invalid) {// true if any form validation fail
       return
-     
 
-    }else if(this.vacancyform.controls['MaxSalary'].value<this.vacancyform.controls['MinSalary'].value){
-      this.loading=false
+
+    } else if (this.vacancyform.controls['MaxSalary'].value < this.vacancyform.controls['MinSalary'].value) {
+      this.loading = false
       this.toastr.error("Maximum salary cannot be less than minimum salary")
-     
+
     }
     else {
       // on Update User info
       this.vacancyServuce.addvacancy(
         this.employer.organization,
-        x==null?"null":x,
+        x == null ? "null" : x,
         this.vacancyform.controls['NoofVacancies'].value,
         this.vacancyform.controls['MinimumQualification'].value,
         this.vacancyform.controls['JobDescription'].value,
@@ -81,27 +85,32 @@ export class AddvacancyComponent implements OnInit {
         this.vacancyform.controls['MinSalary'].value,
         this.vacancyform.controls['MaxSalary'].value,
 
-      ).subscribe((data)=>{
-        console.log("response",data);
-        this.loading=false
+      ).subscribe((data) => {
+        console.log("response", data);
+        this.loading = false
         this.toastr.info("Vacancy Added")
         this.router.navigate(['dashboard']);
-      },error=>{
-        this.loading=false
-        this.toastr.warning("Something went wrong")
-        console.log("error",error)
+      }, error => {
+        if (error.status == 401) {
+          this.toastr.error("Session expired login again")
+        }
+        else {
+          this.loading = false
+          this.toastr.warning("Something went wrong")
+          console.log("error", error)
+        }
       })
 
     }
   }
-  onSubmit=  () => {
-    
-     
+  onSubmit = () => {
+
+
     this.toastr.info("Logout successful")
 
     this.router.navigate(['/login']);
     window.localStorage.removeItem("email");
-    
+
     window.localStorage.removeItem("id");
     window.localStorage.removeItem("userName");
     window.localStorage.removeItem("password");
@@ -109,6 +118,6 @@ export class AddvacancyComponent implements OnInit {
     window.localStorage.removeItem("token");
     window.localStorage.removeItem("fullName");
     window.localStorage.removeItem("phone");
-}
+  }
 
 }

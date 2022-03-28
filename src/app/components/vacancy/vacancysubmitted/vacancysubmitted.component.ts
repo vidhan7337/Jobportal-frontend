@@ -15,8 +15,8 @@ import { VacancyService } from 'src/app/services/vacancy.service';
 export class VacancysubmittedComponent implements OnInit {
   vacancyList: any = [];
   data: any = []
-  page:number = 1;
-  pagesize:number=5;
+  page: number = 1;
+  pagesize: number = 5;
   totalRecords!: number;
   totalPage!: number;
   employer: any;
@@ -24,80 +24,91 @@ export class VacancysubmittedComponent implements OnInit {
   radio: string = "default";
   minsalary: number = 0;
   maxsalary: number = 100000;
-  loading=false;
+  loading = false;
   closeResult = '';
-  constructor(private vacancyService: VacancyService, private empService: EmployerService,private toastr:ToastrService,private modalService: NgbModal) {
+  constructor(private vacancyService: VacancyService, private empService: EmployerService, private toastr: ToastrService, private modalService: NgbModal) {
 
     this.x = String(window.localStorage.getItem("org"))
   }
 
   ngOnInit(): void {
-    this.loading=true
+    this.loading = true
     this.empService.getemployer().subscribe((data) => {
 
       console.log(data)
       this.employer = data
-      this.loading=false
+      this.loading = false
     }, error => {
-      this.loading=false
-      this.toastr.warning("Data not available")
+      if (error.status == 401) {
+        this.toastr.error("Session expired login again")
+      }
+      else {
+        this.loading = false
+        this.toastr.warning("Data not available")
+      }
     });
 
     this.vacancyService.getsubmittedvacancy(this.x, this.page, this.radio, this.minsalary, this.maxsalary).subscribe((data) => {
-      this.loading=true
+      this.loading = true
       this.data = data
       this.vacancyList = this.data.vacancyDetails
-      this.totalRecords=this.data.totalItems
-      this.totalPage=this.data.totalPage
+      this.totalRecords = this.data.totalItems
+      this.totalPage = this.data.totalPage
       console.log(this.vacancyList)
-      this.loading=false
+      this.loading = false
     }, (error) => {
-      this.toastr.warning("No vacancies submitted")
-      console.log(error)
-      this.loading=false
+      if (error.status == 401) {
+        this.toastr.error("Session expired login again")
+      }
+      else {
+        this.toastr.warning("No vacancies submitted")
+        console.log(error)
+        this.loading = false
+      }
     });
   }
 
-  next(){
-    this.loading=true
-    if(this.page==this.totalPage){
+  next() {
+    this.loading = true
+    if (this.page == this.totalPage) {
       this.ngOnInit();
-    }else{
-      this.page=this.page+1;
+    } else {
+      this.page = this.page + 1;
       this.ngOnInit();
     }
-    this.loading=false
+    this.loading = false
   }
 
-  previous(){
-    this.loading=true
-    if(this.page==1){
+  previous() {
+    this.loading = true
+    if (this.page == 1) {
       this.ngOnInit();
-    }else{
-      this.page=this.page-1;
+    } else {
+      this.page = this.page - 1;
       this.ngOnInit();
     }
-    this.loading=false
+    this.loading = false
   }
-  firstpage(){
-    this.loading=true
-    this.page=1;
+  firstpage() {
+    this.loading = true
+    this.page = 1;
     this.ngOnInit();
-    this.loading=false
+    this.loading = false
   }
-  lastpage(){
-    this.loading=true
-    this.page=this.totalPage;
+  lastpage() {
+    this.loading = true
+    this.page = this.totalPage;
     this.ngOnInit();
-    this.loading=false
+    this.loading = false
   }
-  open(content: any,id:number) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      
+  //popup
+  open(content: any, id: number) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+
       this.remove(id);
     }, (reason) => {
       // this.remove(id);
-      
+
     });
   }
 
@@ -111,16 +122,6 @@ export class VacancysubmittedComponent implements OnInit {
   //   }
   // }
 
-  // pagechange(event){
-  //   this.page=event,
-  //   this.vacancyService.getsubmittedvacancy(this.x, this.page, this.radio, this.minsalary, this.maxsalary).subscribe((data) => {
-  //     this.data = data
-  //     this.vacancyList = this.data.vacancyDetails
-  //     console.log(this.vacancyList)
-  //   }, (error) => {
-  //     console.log(error)
-  //   });
-  // }
   // next() {
   //   this.first = this.first + this.rows;
   // }
@@ -139,11 +140,11 @@ export class VacancysubmittedComponent implements OnInit {
   remove(id: number) {
     // if (confirm("Are you sure you want to delete") == true) 
     // {
-      this.vacancyService.deletevacancy(id).subscribe((error) => {
-        console.log(error)
-        this.toastr.warning("Vacancy deleted")
-        this.ngOnInit()
-      });
+    this.vacancyService.deletevacancy(id).subscribe((error) => {
+      console.log(error)
+      this.toastr.warning("Vacancy deleted")
+      this.ngOnInit()
+    });
     //}
   }
 

@@ -8,37 +8,17 @@ import { Employer } from '../models/employer';
   providedIn: 'root'
 })
 export class EmployerService {
-  baseUrl='https://localhost:44361/gateway/employer'
-  
-  httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json; charset=UTF-8','Authorization':'Bearer '+window.localStorage.getItem('token') }) };
+  baseUrl = 'https://localhost:44361/gateway/employer'
+
+  httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json; charset=UTF-8', 'Authorization': 'Bearer ' + window.localStorage.getItem('token') }) };
   constructor(private httpClient: HttpClient) { }
 
-  public getemployer(){
-    let email=window.localStorage.getItem('email');
-   
-    return this.httpClient.get(this.baseUrl+"/"+email,this.httpOptions);
+  public getemployer() {
+    let email = window.localStorage.getItem('email');
+
+    return this.httpClient.get(this.baseUrl + "/" + email, this.httpOptions);
   }
-  public addemployer(Organization: string, OrganizationType: string, CompanyEmail: string, About: string, CompanyPhone: string, StartYear: string,NoOfEmployees:number) {
-    const a = {
-      organization: Organization,
-      organizationType: OrganizationType,
-      companyEmail: CompanyEmail,
-      companyPhone: CompanyPhone,
-      noOfEmployees: NoOfEmployees,
-      startYear: StartYear,
-      about: About,
-      createdBy: window.localStorage.getItem('email')
-    }
-    
-    const body = JSON.stringify(a);
-    console.log(body)
-    
-
-
-    return this.httpClient.post<any>(this.baseUrl, body,this.httpOptions);
-  }
-
-  public updatermployer(id:number,Organization: string, OrganizationType: string, CompanyEmail: string, About: string, CompanyPhone: string, StartYear: string,NoOfEmployees:number){
+  public addemployer(Organization: string, OrganizationType: string, CompanyEmail: string, About: string, CompanyPhone: string, StartYear: string, NoOfEmployees: number) {
     const a = {
       organization: Organization,
       organizationType: OrganizationType,
@@ -52,14 +32,34 @@ export class EmployerService {
 
     const body = JSON.stringify(a);
     console.log(body)
-    
 
 
-    return this.httpClient.put<any>(this.baseUrl+"/"+id, body, this.httpOptions)
+
+    return this.httpClient.post<any>(this.baseUrl, body, this.httpOptions);
   }
-  public getemployerbyname(org:string){
-    
-    
-    return this.httpClient.get("https://localhost:44361/gateway/viewcompany/"+org,this.httpOptions);
+
+  public updatermployer(id: number, Organization: string, OrganizationType: string, CompanyEmail: string, About: string, CompanyPhone: string, StartYear: string, NoOfEmployees: number) {
+    const a = {
+      organization: Organization,
+      organizationType: OrganizationType,
+      companyEmail: CompanyEmail,
+      companyPhone: CompanyPhone,
+      noOfEmployees: NoOfEmployees,
+      startYear: StartYear,
+      about: About,
+      createdBy: window.localStorage.getItem('email')
+    }
+
+    const body = JSON.stringify(a);
+    console.log(body)
+
+
+
+    return this.httpClient.put<any>(this.baseUrl + "/" + id, body, this.httpOptions)
+  }
+  public getemployerbyname(org: string) {
+
+
+    return this.httpClient.get("https://localhost:44361/gateway/viewcompany/" + org, this.httpOptions);
   }
 }

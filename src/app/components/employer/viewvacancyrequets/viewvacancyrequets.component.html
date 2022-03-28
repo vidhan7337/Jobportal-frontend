@@ -1,58 +1,58 @@
 <mat-toolbar color="primary" class="app-header">
-    <div><a  target="_blank" class="positronx" routerLink="/dashboard" routerLinkActive="active" >Job Portal</a>
-      <button  type="submit" routerLink="/employerprofile" routerLinkActive="active"   mat-button>Profile</button>
-      <button  type="submit" routerLink="/addvacancy" routerLinkActive="active"   mat-button>Add Vacancy</button>
-    </div>
-    <span class="nav-tool-items">
-      <a mat-button routerLink="/changepassword" routerLinkActive="active" >Change Password</a>
-      <button type="submit" mat-button (click)="onSubmit();">Logout</button>
-      <!-- <a mat-button routerLink="/login" routerLinkActive="active" (ngSubmit)="onSubmit()" >Logout</a> -->
-    </span>
-  </mat-toolbar>
-  <div *ngIf="loading==true" class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
-    <mat-spinner diameter="80" color="accent"></mat-spinner></div>
-  <div *ngIf="loading==false" class="container" style="margin-top: 100px;">
+  <div><a target="_blank" class="positronx" routerLink="/dashboard" routerLinkActive="active">Job Portal</a>
+    <button type="submit" routerLink="/employerprofile" routerLinkActive="active" mat-button>Profile</button>
+    <button type="submit" routerLink="/addvacancy" routerLinkActive="active" mat-button>Add Vacancy</button>
+  </div>
+  <span class="nav-tool-items">
+    <a mat-button routerLink="/changepassword" routerLinkActive="active">Change Password</a>
+    <button type="submit" mat-button (click)="onSubmit();">Logout</button>
+    <!-- <a mat-button routerLink="/login" routerLinkActive="active" (ngSubmit)="onSubmit()" >Logout</a> -->
+  </span>
+</mat-toolbar>
+<div *ngIf="loading==true" class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <mat-spinner diameter="80" color="accent"></mat-spinner>
+</div>
+<div *ngIf="loading==false" class="container" style="margin-top: 100px;">
 
-    <h1>Vacancy Requests</h1>
+  <h1>Vacancy Requests</h1>
 
-    <p-table [value]="jobseekerList" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
-        responsiveLayout="scroll" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-        [rowsPerPageOptions]="[10,25,50]">
-        <ng-template pTemplate="header">
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Address</th>
-                <th>Total Experience</th>
-                <th>Expected Salary</th>
-                <th>Date of Birth</th>
-                
-                <th>Options</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-jobseeker>
-            <tr>
-                <td>{{jobseeker.firstName}}</td>
-                <td>{{jobseeker.email}}</td>
-                <td>{{jobseeker.phone}}</td>
-                <td>{{jobseeker.address}}</td>
-                <td>{{jobseeker.totalExperience}}</td>
-                
-                <td>₹{{jobseeker.expectedSalary| number: '2.'}}</td>
-                <td>{{jobseeker.dateOfBirth | date:'d/M/yyyy'}}</td>
-                
-                <td>
-                    <a pButton pRipple type="button" 
-                    [routerLink]="['/viewjobseekertoemployer',jobseeker.id]"
-                        >View full profile</a>
-                    
+  <p-table [value]="jobseekerList" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+    responsiveLayout="scroll" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [rowsPerPageOptions]="[10,25,50]">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Address</th>
+        <th>Total Experience</th>
+        <th>Expected Salary</th>
+        <th>Date of Birth</th>
 
-                </td>
-            </tr>
-        </ng-template>
-        <!-- <ng-template pTemplate="paginatorleft">
+        <th>Options</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-jobseeker>
+      <tr>
+        <td>{{jobseeker.firstName}}</td>
+        <td>{{jobseeker.email}}</td>
+        <td>{{jobseeker.phone}}</td>
+        <td>{{jobseeker.address}}</td>
+        <td>{{jobseeker.totalExperience}}</td>
+
+        <td>₹{{jobseeker.expectedSalary| number: '2.'}}</td>
+        <td>{{jobseeker.dateOfBirth | date:'d/M/yyyy'}}</td>
+
+        <td>
+          <a pButton pRipple type="button" [routerLink]="['/viewjobseekertoemployer',jobseeker.id]">View full
+            profile</a>
+
+
+        </td>
+      </tr>
+    </ng-template>
+    <!-- <ng-template pTemplate="paginatorleft">
             <a [routerLink]="['/add-user']" class="btn btn-primary">Add New</a>
         </ng-template> -->
-    </p-table>
+  </p-table>
 </div>

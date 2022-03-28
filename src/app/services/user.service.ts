@@ -8,7 +8,7 @@ import { catchError, map, Observable } from 'rxjs';
 })
 export class UserService {
 
-  baseUrl='https://localhost:44361/gateway';
+  baseUrl = 'https://localhost:44361/gateway';
   constructor(private httpClient: HttpClient) { }
 
   public login(username: string, password: string) {
@@ -21,7 +21,7 @@ export class UserService {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json; charset=UTF-8' }) };
 
 
-    return this.httpClient.post<any>(this.baseUrl+"/login", body, httpOptions);
+    return this.httpClient.post<any>(this.baseUrl + "/login", body, httpOptions);
   }
 
   public register(username: string, password: string, fullname: string, email: string, phone: DecimalPipe, usertpe: string) {
@@ -38,7 +38,7 @@ export class UserService {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json; charset=UTF-8' }) };
 
 
-    return this.httpClient.post<any>(this.baseUrl+"/register", body, httpOptions);
+    return this.httpClient.post<any>(this.baseUrl + "/register", body, httpOptions);
   }
 
   public changepassword(password: string, id: number) {
@@ -55,11 +55,11 @@ export class UserService {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json; charset=UTF-8' }) };
 
 
-    return this.httpClient.put<any>(this.baseUrl+"/changepassword/" + id, body, httpOptions);
+    return this.httpClient.put<any>(this.baseUrl + "/changepassword/" + id, body, httpOptions);
 
   }
 
-  public getpassword(id:number){
-    return this.httpClient.get<any>(this.baseUrl+"/getpassword/"+id);
+  public getpassword(id: number) {
+    return this.httpClient.get<any>(this.baseUrl + "/getpassword/" + id);
   }
 }

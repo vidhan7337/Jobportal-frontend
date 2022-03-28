@@ -1,24 +1,24 @@
-
 <div *ngIf="loading==true" fxLayoutAlign="center center">
-    <mat-spinner diameter="80" color="accent"></mat-spinner></div>
+    <mat-spinner diameter="80" color="accent"></mat-spinner>
+</div>
 <div *ngIf="loading==false" class="container" style="margin-top: 20px;">
 
     <h1>Vacancies</h1>
     <div fxLayout="row" fxLayoutAlign=" center">
         <mat-label>Sort By</mat-label>
         <mat-form-field appearance="fill">
-        <mat-select [(value)]="radio">
-            <mat-option value="default">Default</mat-option>
-            <mat-option value="publisheddate_desc">Published Date Descending</mat-option>
-            <mat-option value="noofvacancy_asc">No Of Vacancies Ascending</mat-option>
-            <mat-option value="noofvacancy_desc">No Of Vacancies Descending</mat-option>
-            <mat-option value="experience_desc">Experience Required Descending</mat-option>
-            <mat-option value="experience_asc">Experience Required Ascending</mat-option>
-            <mat-option value="lastdate_desc">Last Date Descending</mat-option>
-            <mat-option value="lastdate_asc">Last Date Ascending</mat-option>
+            <mat-select [(value)]="radio">
+                <mat-option value="default">Default</mat-option>
+                <mat-option value="publisheddate_desc">Published Date Descending</mat-option>
+                <mat-option value="noofvacancy_asc">No Of Vacancies Ascending</mat-option>
+                <mat-option value="noofvacancy_desc">No Of Vacancies Descending</mat-option>
+                <mat-option value="experience_desc">Experience Required Descending</mat-option>
+                <mat-option value="experience_asc">Experience Required Ascending</mat-option>
+                <mat-option value="lastdate_desc">Last Date Descending</mat-option>
+                <mat-option value="lastdate_asc">Last Date Ascending</mat-option>
 
-        </mat-select>
-    </mat-form-field>
+            </mat-select>
+        </mat-form-field>
         <label for="minsalary" style="margin-left: 20px;">Minimum Salary:</label>
         <input type="number" id="minsalary" name="minsalary" [(ngModel)]="minsalary">
         <label for="maxsalary" style="margin-left: 20px;">Mamimum Salary:</label>
@@ -54,9 +54,9 @@
                 <td>₹{{vacancy.minSalary| number: '2.'}}</td>
                 <td>₹{{vacancy.maxSalary| number: '2.'}}</td>
                 <td>
-                    <a pButton pRipple type="button"  [routerLink]="['/viewcompanytojobseeker',vacancy.publishedBy]"
-                        >View Company</a>
-                    <label *ngIf="vacancyid.includes(vacancy.id)" pButton pRipple 
+                    <a pButton pRipple type="button" [routerLink]="['/viewcompanytojobseeker',vacancy.publishedBy]">View
+                        Company</a>
+                    <label *ngIf="vacancyid.includes(vacancy.id)" pButton pRipple
                         style="margin-left: 20px;margin-top: 20px;">Applied</label>
                     <a *ngIf="!vacancyid.includes(vacancy.id)" pButton pRipple type="button"
                         (click)="applyforvacancy(vacancy.id)" style="margin-left: 20px;margin-top: 20px;">Apply</a>

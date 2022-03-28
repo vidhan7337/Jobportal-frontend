@@ -11,62 +11,72 @@ import { JobseekerService } from 'src/app/services/jobseeker.service';
 })
 export class UpdatequalificationjobseekerComponent implements OnInit {
 
-  qualificationform:FormGroup;
-  qualification:any;
+  qualificationform: FormGroup;
+  qualification: any;
   id!: number;
-  loading=false;
-  date=new Date();
-  constructor(private router:Router,private fb:FormBuilder,
+  loading = false;
+  date = new Date();
+  constructor(private router: Router, private fb: FormBuilder,
     private route: ActivatedRoute,
-    private jobseekerService:JobseekerService,
-    private toastr:ToastrService) {
-    this.qualificationform=this.fb.group({
-      qualificationName:["",Validators.required],
-      University:["",[Validators.required,Validators.pattern('^[a-zA-Z ]*$')]],
-      yearOfCompletion:[null,Validators.required],
-      GradeorScore:["",Validators.required]
-    })  
-    
-    }
+    private jobseekerService: JobseekerService,
+    private toastr: ToastrService) {
+    this.qualificationform = this.fb.group({
+      qualificationName: ["", Validators.required],
+      University: ["", [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
+      yearOfCompletion: [null, Validators.required],
+      GradeorScore: ["", Validators.required]
+    })
+
+  }
 
   ngOnInit(): void {
-    this.loading=true
-    this.route.params.subscribe(params=>{
-      this.id=params['id'];
+    this.loading = true
+    this.route.params.subscribe(params => {
+      this.id = params['id'];
       console.log(params['id'])
     });
-    this.jobseekerService.getsinglequalification(this.id).subscribe((data)=>{
-      this.qualification=data
-      this.loading=false
-    },error=>{
-      this.loading=false
-      this.toastr.warning("something went wrong")
-      console.log(error)
+    this.jobseekerService.getsinglequalification(this.id).subscribe((data) => {
+      this.qualification = data
+      this.loading = false
+    }, error => {
+      if (error.status == 401) {
+        this.toastr.error("Session expired login again")
+      }
+      else {
+        this.loading = false
+        this.toastr.warning("something went wrong")
+        console.log(error)
+      }
     })
   }
 
-  save(){
-    this.loading=true
-    if(this.qualificationform.invalid){
+  save() {
+    this.loading = true
+    if (this.qualificationform.invalid) {
       return
-    }else{
+    } else {
       this.jobseekerService.updatequalification(
         this.id,
         this.qualificationform.controls['qualificationName'].value,
         this.qualificationform.controls['University'].value,
-      
+
         this.qualificationform.controls['yearOfCompletion'].value,
         this.qualificationform.controls['GradeorScore'].value,
-        
-      ).subscribe((data)=>{
-        console.log("response",data);
-        this.loading=false
+
+      ).subscribe((data) => {
+        console.log("response", data);
+        this.loading = false
         this.toastr.info("Qualification updated check profile section")
         this.router.navigate(['dashboard']);
-      },error=>{
-        this.toastr.warning("something went wrong")
-        this.loading=false
-        console.log("error",error)
+      }, error => {
+        if (error.status == 401) {
+          this.toastr.error("Session expired login again")
+        }
+        else {
+          this.toastr.warning("something went wrong")
+          this.loading = false
+          console.log("error", error)
+        }
       })
     }
   }

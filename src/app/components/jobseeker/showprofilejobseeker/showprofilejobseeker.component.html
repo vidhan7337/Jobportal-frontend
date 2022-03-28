@@ -7,7 +7,7 @@
     <form>
       <div class="mb-3">
         <label for="dateOfBirth">Are you sure you want to delete</label>
-        
+
       </div>
     </form>
   </div>
@@ -32,7 +32,8 @@
   </span>
 </mat-toolbar>
 <div *ngIf="loading==true" class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
-  <mat-spinner diameter="80" color="accent"></mat-spinner></div>
+  <mat-spinner diameter="80" color="accent"></mat-spinner>
+</div>
 <div *ngIf="loading==false" style="display: flex;">
   <div class="login-wrapper" fxLayout="row" fxLayoutAlign="left" style="flex-grow: 1">
     <div class="profile">
@@ -64,10 +65,10 @@
       </main>
       <div class="mb-1">
         <div class="btn-group" role="group" aria-label="Basic example">
-            <button (click)="update()" class="btn btn-primary" type="button">
-              Update Profile </button>
-            </div>  
+          <button (click)="update()" class="btn btn-primary" type="button">
+            Update Profile </button>
         </div>
+      </div>
     </div>
   </div>
   <div class="login-wrapper1" fxLayout="row" fxLayoutAlign="left" style="flex-grow:1">
@@ -94,11 +95,11 @@
             <td>{{ qualification.gradeOrScore}}</td>
 
             <td>
-                    <a pButton pRipple type="button" [routerLink]="['/updatequalification',qualification.id]" icon="pi pi-user-edit"
-                        class="p-button-rounded"></a>
-                    <a pButton pRipple type="button" (click)="open1(content,qualification.id)" style="margin-left: 20px;"
-                        icon="pi pi-trash" class="p-button-rounded"></a>
-                </td>
+              <a pButton pRipple type="button" [routerLink]="['/updatequalification',qualification.id]"
+                icon="pi pi-user-edit" class="p-button-rounded"></a>
+              <a pButton pRipple type="button" (click)="open1(content,qualification.id)" style="margin-left: 20px;"
+                icon="pi pi-trash" class="p-button-rounded"></a>
+            </td>
           </tr>
         </ng-template>
         <!-- <ng-template pTemplate="paginatorleft">
@@ -131,11 +132,11 @@
             <td>{{ experience.jobDescription}}</td>
 
             <td>
-                  <a pButton pRipple type="button" [routerLink]="['/updateexperience',experience.id]" icon="pi pi-user-edit"
-                      class="p-button-rounded"></a>
-                  <a pButton pRipple type="button" (click)="open(content,experience.id)" style="margin-left: 20px;"
-                      icon="pi pi-trash" class="p-button-rounded"></a>
-              </td>
+              <a pButton pRipple type="button" [routerLink]="['/updateexperience',experience.id]" icon="pi pi-user-edit"
+                class="p-button-rounded"></a>
+              <a pButton pRipple type="button" (click)="open(content,experience.id)" style="margin-left: 20px;"
+                icon="pi pi-trash" class="p-button-rounded"></a>
+            </td>
           </tr>
         </ng-template>
         <!-- <ng-template pTemplate="paginatorleft">

@@ -10,30 +10,30 @@ import { EmployerService } from 'src/app/services/employer.service';
 })
 export class ViewcompanyprofiletojobseekerComponent implements OnInit {
 
-  employer:any;
+  employer: any;
   org!: string;
-  loading=false;
-  constructor(private router:Router,private empService:EmployerService,private route: ActivatedRoute,private toastr:ToastrService) { }
+  loading = false;
+  constructor(private router: Router, private empService: EmployerService, private route: ActivatedRoute, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.loading=true
-    this.route.params.subscribe(params=>{
-      this.org=params['org'];
+    this.loading = true
+    this.route.params.subscribe(params => {
+      this.org = params['org'];
       console.log(params['org'])
     });
-    this.empService.getemployerbyname(this.org).subscribe((data)=>{
-      this.employer=data
-      this.loading=false
+    this.empService.getemployerbyname(this.org).subscribe((data) => {
+      this.employer = data
+      this.loading = false
     })
   }
-  onSubmit=  () => {
-    
-     
+  onSubmit = () => {
+
+
     this.toastr.info("Logout successful")
 
     this.router.navigate(['/login']);
     window.localStorage.removeItem("email");
-    
+
     window.localStorage.removeItem("id");
     window.localStorage.removeItem("userName");
     window.localStorage.removeItem("password");
@@ -41,5 +41,5 @@ export class ViewcompanyprofiletojobseekerComponent implements OnInit {
     window.localStorage.removeItem("token");
     window.localStorage.removeItem("fullName");
     window.localStorage.removeItem("phone");
-}
+  }
 }

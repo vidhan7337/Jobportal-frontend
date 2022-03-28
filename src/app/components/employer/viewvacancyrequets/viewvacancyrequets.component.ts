@@ -12,32 +12,32 @@ import { VacancyService } from 'src/app/services/vacancy.service';
 })
 export class ViewvacancyrequetsComponent implements OnInit {
 
-  jobseekerList:any=[];
+  jobseekerList: any = [];
   vacid!: number;
-  loading=false;
-  constructor(private route: ActivatedRoute,private router:Router,private empService:EmployerService,private jobseekerService:JobseekerService,private vacService:VacancyService,private toastr:ToastrService) { }
+  loading = false;
+  constructor(private route: ActivatedRoute, private router: Router, private empService: EmployerService, private jobseekerService: JobseekerService, private vacService: VacancyService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.loading=true
-    this.route.params.subscribe(params=>{
-      this.vacid=params['vacid'];
+    this.loading = true
+    this.route.params.subscribe(params => {
+      this.vacid = params['vacid'];
       console.log(params['vacid'])
     });
 
-    this.vacService.appliedusers(Number(this.vacid)).subscribe((data)=>{
-      this.jobseekerList=data
-      this.loading=false
+    this.vacService.appliedusers(Number(this.vacid)).subscribe((data) => {
+      this.jobseekerList = data
+      this.loading = false
     })
-  
+
   }
-  onSubmit=  () => {
-    
-     
+  onSubmit = () => {
+
+
     this.toastr.info("Logout successful")
 
     this.router.navigate(['/login']);
     window.localStorage.removeItem("email");
-    
+
     window.localStorage.removeItem("id");
     window.localStorage.removeItem("userName");
     window.localStorage.removeItem("password");
@@ -45,6 +45,6 @@ export class ViewvacancyrequetsComponent implements OnInit {
     window.localStorage.removeItem("token");
     window.localStorage.removeItem("fullName");
     window.localStorage.removeItem("phone");
-}
+  }
 
 }

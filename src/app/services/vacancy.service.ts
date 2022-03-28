@@ -111,10 +111,10 @@ export class VacancyService {
   // }
 
   public appliedvacancies(userid: number) {
-    return this.httpClient.get('https://localhost:44361/gateway/vacancyapplied/' + userid,this.httpOptions);
+    return this.httpClient.get('https://localhost:44361/gateway/vacancyapplied/' + userid, this.httpOptions);
   }
 
   public appliedusers(vacid: number) {
-    return this.httpClient.get('https://localhost:44361/gateway/vacancyrequest/' + vacid,this.httpOptions);
+    return this.httpClient.get('https://localhost:44361/gateway/vacancyrequest/' + vacid, this.httpOptions);
   }
 }

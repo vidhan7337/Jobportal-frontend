@@ -14,38 +14,38 @@ import { EmployerService } from '../../../services/employer.service';
 export class AddemployerprofileComponent implements OnInit {
 
   employerform: FormGroup;
-  date=new Date();
-  loading=false;
+  date = new Date();
+  loading = false;
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private empService:EmployerService,
+    private empService: EmployerService,
     public datepipe: DatePipe,
-    private toastr:ToastrService
-  ) { 
-    this.employerform=this.fb.group({
-      Organization:['', [Validators.required]],
-      OrganizationType:['', [Validators.required]],
-      CompanyEmail:['', [Validators.required,Validators.email]],
-      CompanyPhone:['', [Validators.required,Validators.minLength(10),Validators.maxLength(10)]],
-      NoOfEmployees:['', [Validators.required]],
-      StartYear:[null, [Validators.required]],
-      About:['', [Validators.required]],
-      
+    private toastr: ToastrService
+  ) {
+    this.employerform = this.fb.group({
+      Organization: ['', [Validators.required]],
+      OrganizationType: ['', [Validators.required]],
+      CompanyEmail: ['', [Validators.required, Validators.email]],
+      CompanyPhone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+      NoOfEmployees: ['', [Validators.required]],
+      StartYear: [null, [Validators.required]],
+      About: ['', [Validators.required]],
+
     });
-   
+
   }
 
   ngOnInit(): void {
-   
+
   }
-  save(){
-    this.loading=true
+  save() {
+    this.loading = true
     if (this.employerform.invalid) {
       // true if any form validation fail
       return
 
-   
+
     } else {
       // on Update User info
       this.empService.addemployer(
@@ -56,19 +56,24 @@ export class AddemployerprofileComponent implements OnInit {
         this.employerform.controls['CompanyPhone'].value.toString(),
         this.employerform.controls['StartYear'].value,
         this.employerform.controls['NoOfEmployees'].value,
-        
 
-      ).subscribe((data)=>{
-        console.log("response",data);
-        this.loading=false
+
+      ).subscribe((data) => {
+        console.log("response", data);
+        this.loading = false
         this.toastr.info("Details added you can check profile section")
         this.router.navigate(['dashboard']);
-      },error=>{
-        console.log("error",error)
-        this.toastr.warning("Something went wrong")
-        this.loading=false
+      }, error => {
+        if (error.status == 401) {
+          this.toastr.error("Session expired login again")
+        }
+        else {
+          console.log("error", error)
+          this.toastr.warning("Something went wrong")
+          this.loading = false
+        }
       })
-     
+
     }
   }
 
