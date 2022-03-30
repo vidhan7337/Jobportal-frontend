@@ -21,7 +21,7 @@
         </mat-form-field>
         <label for="minsalary" style="margin-left: 20px;">Minimum Salary:</label>
         <input type="number" id="minsalary" name="minsalary" [(ngModel)]="minsalary">
-        <label for="maxsalary" style="margin-left: 20px;">Mamimum Salary:</label>
+        <label for="maxsalary" style="margin-left: 20px;">Maximum Salary:</label>
         <input type="number" id="maxsalary" name="maxsalary" [(ngModel)]="maxsalary">
         <label for="search" style="margin-left: 20px;">Search:</label>
         <input type="text" id="search" name="search" placeholder="company/job description" [(ngModel)]="search">
@@ -54,10 +54,12 @@
                 <td>₹{{vacancy.minSalary| number: '2.'}}</td>
                 <td>₹{{vacancy.maxSalary| number: '2.'}}</td>
                 <td>
-                    <a pButton pRipple type="button" [routerLink]="['/viewcompanytojobseeker',vacancy.publishedBy]">View
-                        Company</a>
+                    <!-- <a pButton pRipple type="button" [routerLink]="['/viewcompanytojobseeker',vacancy.publishedBy]">View
+                        Company</a> -->
+                        <a pButton pRipple type="button" (click)="showcompanyprofile(content,vacancy.publishedBy)">View
+                            Company</a>
                     <label *ngIf="vacancyid.includes(vacancy.id)" pButton pRipple
-                        style="margin-left: 20px;margin-top: 20px;">Applied</label>
+                        style="margin-left: 20px;margin-top: 20px; background-color: #04AA6D;">Applied</label>
                     <a *ngIf="!vacancyid.includes(vacancy.id)" pButton pRipple type="button"
                         (click)="applyforvacancy(vacancy.id)" style="margin-left: 20px;margin-top: 20px;">Apply</a>
 
@@ -80,3 +82,38 @@
             (click)="lastpage()">Last Page</button>
     </div>
 </div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <div class="profile">
+
+            <header>
+              <h1>About
+                <small>Company</small>
+              </h1>
+            </header>
+        
+        
+            <main>
+              <dl>
+                <dt>Organization</dt>
+                <dd>{{employer.organization}}</dd>
+                <dt>Start Year</dt>
+                <dd>{{employer.startYear | date:'d/M/yyyy'}}</dd>
+                <dt>Organization Type</dt>
+                <dd>{{employer.organizationType}}</dd>
+                <dt>About</dt>
+                <dd>{{employer.about}}</dd>
+                <dt>No of Employees</dt>
+                <dd>{{employer.noOfEmployees}}</dd>
+                <dt>Email</dt>
+                <dd>{{employer.companyEmail}}</dd>
+                <dt>Phone</dt>
+                <dd>
+                  {{employer.companyPhone}}</dd>
+              </dl>
+            </main>
+        
+          </div>
+    </div>
+  </ng-template>

@@ -80,5 +80,20 @@ export class UpdateemployerprofileComponent implements OnInit {
       }
     })
   }
+  onSubmit = () => {
 
+
+    this.toastr.info("Logout successful")
+
+    this.router.navigate(['/login']);
+    window.localStorage.removeItem("email");
+
+    window.localStorage.removeItem("id");
+    window.localStorage.removeItem("userName");
+    window.localStorage.removeItem("password");
+    window.localStorage.removeItem("usertype");
+    window.localStorage.removeItem("token");
+    window.localStorage.removeItem("fullName");
+    window.localStorage.removeItem("phone");
+  }
 }

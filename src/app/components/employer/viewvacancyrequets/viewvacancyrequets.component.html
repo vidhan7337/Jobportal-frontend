@@ -17,7 +17,7 @@
   <h1>Vacancy Requests</h1>
 
   <p-table [value]="jobseekerList" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
-    responsiveLayout="scroll" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    responsiveLayout="scroll" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} requets"
     [rowsPerPageOptions]="[10,25,50]">
     <ng-template pTemplate="header">
       <tr>
@@ -44,8 +44,10 @@
         <td>{{jobseeker.dateOfBirth | date:'d/M/yyyy'}}</td>
 
         <td>
-          <a pButton pRipple type="button" [routerLink]="['/viewjobseekertoemployer',jobseeker.id]">View full
-            profile</a>
+          <!-- <a pButton pRipple type="button" [routerLink]="['/viewjobseekertoemployer',jobseeker.id]">View full
+            profile</a> -->
+            <a pButton pRipple type="button" (click)="showprofile(content,jobseeker.id)">View full
+              profile</a>  
 
 
         </td>
@@ -56,3 +58,107 @@
         </ng-template> -->
   </p-table>
 </div>
+
+<ng-template #content let-modal class="modal-dialog modal-xl">
+  <div class="modal-dialog modal-xl">
+    <h1>JobSeeker Details</h1>
+    <div *ngIf="loading==false" style="display: flex; margin-top: 10px; ">
+      <div class="login-wrapper" fxLayout="row"  style="flex-grow: 1; margin-right: 20px;">
+        <div class="profile">
+          <header>
+            <h1>Profile</h1>
+          </header>
+    
+    
+          <main>
+            <dl>
+              <dt>First Name</dt>
+              <dd>{{jobseeker.firstName}}</dd>
+              <dt>Last Name</dt>
+              <dd>{{jobseeker.lastName}}</dd>
+              <dt>Phone</dt>
+              <dd>{{jobseeker.phone}}</dd>
+              <dt>Address</dt>
+              <dd>{{jobseeker.address}}</dd>
+              <dt>Email</dt>
+              <dd>{{jobseeker.email}}</dd>
+              <dt>Total Experience</dt>
+              <dd>{{jobseeker.totalExperience}}</dd>
+              <dt>Expected Salary</dt>
+              <dd>
+                ₹{{jobseeker.expectedSalary| number: '2.'}}</dd>
+              <dt>Date of Birth</dt>
+              <dd>{{jobseeker.dateOfBirth | date:'d/M/yyyy'}}</dd>
+            </dl>
+          </main>
+    
+        </div>
+      </div>
+      <div class="login-wrapper1" fxLayout="row" fxLayoutAlign="left" style="flex-grow:3">
+        <div class="profile1">
+          <h1>Qualifications</h1>
+    
+          <p-table [value]="qualificationList" responsiveLayout="scroll">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>Name</th>
+                <th>University</th>
+                <th>Year of Completion</th>
+                <th>Grade/Score</th>
+    
+    
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-qualification>
+              <tr>
+    
+                <td>{{qualification.qualificationName}}</td>
+                <td>{{ qualification.university}}</td>
+                <td>{{ qualification.yearOfCompletion | date:'yyyy'}}</td>
+                <td>{{ qualification.gradeOrScore}}</td>
+    
+    
+              </tr>
+            </ng-template>
+            <!-- <ng-template pTemplate="paginatorleft">
+                  <a [routerLink]="['/add-user']" class="btn btn-primary">Add New</a>
+              </ng-template> -->
+          </p-table>
+          <h1 style="margin-top: 10px;">Experiences</h1>
+          <p-table [value]="experienceList" responsiveLayout="scroll">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>Comapny Name</th>
+                <th>Start year</th>
+                <th>End Year</th>
+                <th>Url</th>
+                <th>Designation</th>
+                <th>JobDescription</th>
+    
+    
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-experience>
+              <tr>
+    
+                <td>{{experience.companyName}}</td>
+    
+                <td>{{ experience.startYear | date:'yyyy'}}</td>
+                <td>{{ experience.endYear | date:'yyyy'}}</td>
+                <td>{{ experience.comapanyUrl}}</td>
+                <td>{{ experience.designation}}</td>
+                <td>{{ experience.jobDescription}}</td>
+    
+    
+              </tr>
+            </ng-template>
+            <!-- <ng-template pTemplate="paginatorleft">
+                <a [routerLink]="['/add-user']" class="btn btn-primary">Add New</a>
+            </ng-template> -->
+          </p-table>
+    
+        </div>
+      </div>
+    </div>  
+  </div>
+</ng-template>

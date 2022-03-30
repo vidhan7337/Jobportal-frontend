@@ -1,6 +1,7 @@
 <mat-toolbar color="primary" class="app-header">
     <div><a target="_blank" class="positronx" routerLink="/dashboard" routerLinkActive="active">Job Portal</a>
         <button type="submit" routerLink="/employerprofile" routerLinkActive="active" mat-button>Profile</button>
+        <button type="submit" routerLink="/addvacancy" routerLinkActive="active" mat-button>Add Vacancy</button>
 
     </div>
     <span class="nav-tool-items">
@@ -15,7 +16,7 @@
 <div *ngIf="loading==false" class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
     <div class="container">
         <h1>Fill Vacancy Details </h1>
-        <form [formGroup]="vacancyform" autocomplete="off">
+        <form [formGroup]="vacancyform" autocomplete="off" style="width: 500px;">
             <div class="mb-1">
                 <label for="name" class="form-label">No of Vacancies*</label>
                 <div class="input-group has-validation">

@@ -1,6 +1,7 @@
 <mat-toolbar color="primary" class="app-header">
   <div><a target="_blank" class="positronx" routerLink="/dashboard" routerLinkActive="active">Job Portal</a>
 
+    <button type="submit" routerLink="/employerprofile" routerLinkActive="active" mat-button>Profile</button>
     <button type="submit" routerLink="/addvacancy" routerLinkActive="active" mat-button>Add Vacancy</button>
   </div>
   <span class="nav-tool-items">
@@ -13,6 +14,8 @@
   <mat-spinner diameter="80" color="accent"></mat-spinner>
 </div>
 <div *ngIf="loading==false" class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <div class="card">
+    <img src="https://bsmedia.business-standard.com/_media/bs/img/article/2019-06/05/full/1559674671-2023.jpg" alt="John" style="width:100%"> 
   <div class="profile">
 
     <header>
@@ -48,6 +51,7 @@
 
       </div>
     </div>
+  </div>
   </div>
 </div>
 

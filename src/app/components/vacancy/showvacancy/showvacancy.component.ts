@@ -1,6 +1,8 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { EmployerService } from 'src/app/services/employer.service';
 import { VacancyService } from 'src/app/services/vacancy.service';
 
 @Component({
@@ -9,6 +11,7 @@ import { VacancyService } from 'src/app/services/vacancy.service';
   styleUrls: ['./showvacancy.component.css']
 })
 export class ShowvacancyComponent implements OnInit {
+  employer: any;
   loading: boolean = false;
   vacancyList: any = [];
   data: any = []
@@ -22,7 +25,7 @@ export class ShowvacancyComponent implements OnInit {
   radio: string = "default";
   minsalary: number = 0;
   maxsalary: number = 100000;
-  constructor(private vacancyService: VacancyService, public datepipe: DatePipe, private toastr: ToastrService) { }
+  constructor(private vacancyService: VacancyService, public datepipe: DatePipe, private toastr: ToastrService,private modalService: NgbModal,private empService:EmployerService) { }
 
   ngOnInit(): void {
     this.loading = true;
@@ -101,6 +104,17 @@ export class ShowvacancyComponent implements OnInit {
         this.toastr.warning("Something went wrong")
       }
     })
+  }
+
+
+
+  showcompanyprofile(content: any,org:string){
+    console.log(org)
+    this.empService.getemployerbyname(org).subscribe((data) => {
+      this.employer = data
+     console.log(this.employer)
+    })
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
   }
 
 

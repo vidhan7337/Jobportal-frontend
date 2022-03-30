@@ -21,6 +21,7 @@ export class ChangepasswordComponent implements OnInit {
   hide3 = true;
   pass!: string;
   loading = false;
+  profile: string = "Employer";
   constructor(private router: Router, private formBuilder: FormBuilder, private userService: UserService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
@@ -30,6 +31,14 @@ export class ChangepasswordComponent implements OnInit {
 
 
     })
+    
+    if (window.localStorage.getItem('usertype') == "Employer") {
+      
+      this.profile = "Employer";
+    } else {
+      
+      this.profile = "JobSeeker";}
+    
   }
   onSubmit() {
     this.loading = true;

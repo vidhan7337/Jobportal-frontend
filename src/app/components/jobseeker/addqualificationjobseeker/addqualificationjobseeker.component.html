@@ -1,7 +1,10 @@
 <mat-toolbar color="primary" class="app-header">
     <div><a target="_blank" class="positronx" routerLink="/dashboard" routerLinkActive="active">Job Portal</a>
 
-
+        <button type="submit" routerLink="/jobseekerprofile" routerLinkActive="active"
+        mat-button>Profile</button>
+        <button type="submit" routerLink="/addqualification" routerLinkActive="active" mat-button>Add Qualification</button>
+     
         <button type="submit" routerLink="/addexperince" routerLinkActive="active" mat-button>Add Experience</button>
     </div>
     <span class="nav-tool-items">
@@ -17,7 +20,7 @@
 </div>
 <div *ngIf="loading==false" class="container" style="margin-top: 100px;">
     <h1>Add your Qualification details</h1>
-    <form [formGroup]="qualificationform" autocomplete="off">
+    <form [formGroup]="qualificationform" autocomplete="off" style="width: 500px;">
         <div class="mb-1">
             <label for="name" class="form-label">Qualification Name*</label>
             <div class="input-group has-validation">
