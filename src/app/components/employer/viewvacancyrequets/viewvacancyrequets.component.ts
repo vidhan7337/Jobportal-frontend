@@ -27,13 +27,14 @@ export class ViewvacancyrequetsComponent implements OnInit {
       this.vacid = params['vacid'];
       console.log(params['vacid'])
     });
-
+    //all jobseeker applied for particular vacancy
     this.vacService.appliedusers(Number(this.vacid)).subscribe((data) => {
       this.jobseekerList = data
       this.loading = false
     })
 
   }
+  //logout button
   onSubmit = () => {
 
 
@@ -50,7 +51,7 @@ export class ViewvacancyrequetsComponent implements OnInit {
     window.localStorage.removeItem("fullName");
     window.localStorage.removeItem("phone");
   }
-
+  //getting jobseeker profile to show to employer in popup
   showprofile(content: any,id:number){
     this.jobseekerService.getjobseekerprofileforshow(id).subscribe((data) => {
       this.jobseeker = data;

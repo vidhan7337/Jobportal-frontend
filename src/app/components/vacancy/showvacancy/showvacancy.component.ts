@@ -29,6 +29,7 @@ export class ShowvacancyComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
+    // showing all vacancies
     this.vacancyService.getallvacancies(this.search, this.page, this.radio, this.minsalary, this.maxsalary).subscribe((data) => {
       this.data = data
       this.vacancyList = this.data.vacancyDetails
@@ -52,6 +53,8 @@ export class ShowvacancyComponent implements OnInit {
 
 
   }
+
+  //next page
   next() {
 
     if (this.page == this.totalPage) {
@@ -62,7 +65,7 @@ export class ShowvacancyComponent implements OnInit {
     }
 
   }
-
+  //previous page
   previous() {
     if (this.page == 1) {
       this.ngOnInit();
@@ -71,16 +74,18 @@ export class ShowvacancyComponent implements OnInit {
       this.ngOnInit();
     }
   }
+  //direct to first page
   firstpage() {
     this.page = 1;
     this.ngOnInit();
   }
+  //direct to last page
   lastpage() {
     this.page = this.totalPage;
     this.ngOnInit();
   }
 
-
+  //apply for particular vacancy
   applyforvacancy(vacid: number) {
     this.loading = true;
     let userid = window.localStorage.getItem('userid');
@@ -107,7 +112,7 @@ export class ShowvacancyComponent implements OnInit {
   }
 
 
-
+  //showing profile of employer to jobseeker
   showcompanyprofile(content: any,org:string){
     console.log(org)
     this.empService.getemployerbyname(org).subscribe((data) => {

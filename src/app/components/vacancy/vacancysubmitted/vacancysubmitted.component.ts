@@ -33,6 +33,8 @@ export class VacancysubmittedComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true
+
+    //employer details
     this.empService.getemployer().subscribe((data) => {
 
       console.log(data)
@@ -48,6 +50,8 @@ export class VacancysubmittedComponent implements OnInit {
       }
     });
 
+
+    //all submitted vacancies by employer
     this.vacancyService.getsubmittedvacancy(this.x, this.page, this.radio, this.minsalary, this.maxsalary).subscribe((data) => {
       this.loading = true
       this.data = data
@@ -67,7 +71,7 @@ export class VacancysubmittedComponent implements OnInit {
       }
     });
   }
-
+  //next page
   next() {
     this.loading = true
     if (this.page == this.totalPage) {
@@ -78,7 +82,7 @@ export class VacancysubmittedComponent implements OnInit {
     }
     this.loading = false
   }
-
+  //previous page
   previous() {
     this.loading = true
     if (this.page == 1) {
@@ -112,40 +116,15 @@ export class VacancysubmittedComponent implements OnInit {
     });
   }
 
-  // private getDismissReason(reason: any): string {
-  //   if (reason === ModalDismissReasons.ESC) {
-  //     return 'by pressing ESC';
-  //   } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-  //     return 'by clicking on a backdrop';
-  //   } else {
-  //     return `with: ${reason}`;
-  //   }
-  // }
-
-  // next() {
-  //   this.first = this.first + this.rows;
-  // }
-  // prev() {
-  //   this.first = this.first - this.rows;
-  // }
-  // reset() {
-  //   this.first = 0;
-  // }
-  // isLastPage(): boolean {
-  //   return this.data.totalItems ? this.first === (this.data.totalItems - this.rows) : true;
-  // }
-  // isFirstPage(): boolean {
-  //   return this.data.totalItems ? this.first === 0 : true;
-  // }
+  //delete vacancy
   remove(id: number) {
-    // if (confirm("Are you sure you want to delete") == true) 
-    // {
+    
     this.vacancyService.deletevacancy(id).subscribe((error) => {
       console.log(error)
       this.toastr.warning("Vacancy deleted")
       this.ngOnInit()
     });
-    //}
+   
   }
 
 

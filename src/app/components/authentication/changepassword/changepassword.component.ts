@@ -16,16 +16,22 @@ export class ChangepasswordComponent implements OnInit {
     newPassword: ["", Validators.required],
     confirmPassword: ["", Validators.required]
   })
-  hide1 = true;
+  // variables for password hide show
+  hide1 = true;  
   hide2 = true;
   hide3 = true;
+
+
   pass!: string;
   loading = false;
+
   profile: string = "Employer";
   constructor(private router: Router, private formBuilder: FormBuilder, private userService: UserService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     let id = window.localStorage.getItem("id");
+
+    //getting old password
     this.userService.getpassword(Number(id)).subscribe((data) => {
       this.pass = data.toString();
 
@@ -40,6 +46,8 @@ export class ChangepasswordComponent implements OnInit {
       this.profile = "JobSeeker";}
     
   }
+
+  //change password 
   onSubmit() {
     this.loading = true;
     let id = window.localStorage.getItem("id");
@@ -79,6 +87,8 @@ export class ChangepasswordComponent implements OnInit {
 
 
   }
+
+  //logout button
   onSubmitlogout = () => {
 
 

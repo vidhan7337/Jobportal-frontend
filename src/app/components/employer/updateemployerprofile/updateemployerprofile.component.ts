@@ -23,6 +23,7 @@ export class UpdateemployerprofileComponent implements OnInit {
 
   ) {
     this.loading = true
+    //getting previous details to show in form
     this.empService.getemployer().subscribe((data) => {
       this.loading = false
       console.log(data)
@@ -31,9 +32,7 @@ export class UpdateemployerprofileComponent implements OnInit {
       if (error.status == 401) {
         this.toastr.error("Session expired login again")
       }
-
     });
-
     this.employerform = this.fb.group({
       Organization: ['', [Validators.required]],
       OrganizationType: ['', [Validators.required]],
@@ -52,6 +51,8 @@ export class UpdateemployerprofileComponent implements OnInit {
   ngOnInit(): void {
 
   }
+
+  //update details of employer
   update() {
     this.loading = true
     this.empService.updatermployer(
@@ -80,6 +81,8 @@ export class UpdateemployerprofileComponent implements OnInit {
       }
     })
   }
+
+  //logout button
   onSubmit = () => {
 
 

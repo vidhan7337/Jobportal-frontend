@@ -11,6 +11,8 @@ export class VacancyService {
   httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json; charset=UTF-8', 'Authorization': 'Bearer ' + window.localStorage.getItem('token') }) };
   constructor(private httpClient: HttpClient) { }
 
+
+  //add new vacancy
   public addvacancy(PublishedBy: string, PublishedDate: string, NoofVacancies: number, MinimumQualification: string, JobDescription: string, ExperienceRequired: number, LastDate: string, minsalary: number, maxsalar: number) {
     const a = {
 
@@ -35,6 +37,7 @@ export class VacancyService {
     return this.httpClient.post<any>(this.baseUrl, body, this.httpOptions);
   }
 
+  //get all submitted vacancies by employer
   public getsubmittedvacancy(org: string, page: number, sortby: string, minsalary: number, maxsalary: number) {
 
     return this.httpClient.get<Vacancy>(this.baseUrl + "/submitted/" + org, {
@@ -48,9 +51,13 @@ export class VacancyService {
 
   }
 
+
+  //delete a vacancy
   public deletevacancy(id: number) {
     return this.httpClient.delete(this.baseUrl + "/" + id, this.httpOptions);
   }
+
+  //update vacancy
   public updatevacancy(id: number, PublishedBy: string, PublishedDate: string, NoofVacancies: number, MinimumQualification: string, JobDescription: string, ExperienceRequired: number, LastDate: string, minsalary: number, maxsalar: number) {
     const a = {
 
@@ -74,10 +81,13 @@ export class VacancyService {
     return this.httpClient.put<any>(this.baseUrl + "/" + id, body, this.httpOptions);
   }
 
+  //get single vacancy details
   public getvacancydetail(id: number) {
     return this.httpClient.get(this.baseUrl + "/" + id, this.httpOptions);
   }
 
+
+  //get all vacancy details
   public getallvacancies(search: string, page: number, sortby: string, minsalary: number, maxsalary: number) {
     return this.httpClient.get(this.baseUrl, {
       headers: { 'Content-Type': 'application/json; charset=UTF-8', 'Authorization': 'Bearer ' + window.localStorage.getItem('token') }, params: {
@@ -90,6 +100,8 @@ export class VacancyService {
     });
   }
 
+
+  //apply for vacancy by jobseeker
   public applyvacancy(vacid: number, userid: number, date: string) {
     const a = {
       vacancyId: vacid,
@@ -106,14 +118,13 @@ export class VacancyService {
     return this.httpClient.post<any>('https://localhost:44361/gateway/vacancyrequest', body, this.httpOptions);
   }
 
-  // public appliedearlier(vacid: number, userid: number) {
-  //   return this.httpClient.get('https://localhost:44368/api/VacancyRequestContoller/' + vacid + '/user/' + userid);
-  // }
 
+  //vacancies id applied by jobseeker
   public appliedvacancies(userid: number) {
     return this.httpClient.get('https://localhost:44361/gateway/vacancyapplied/' + userid, this.httpOptions);
   }
 
+  //jobseeker id applied for particular vacancies
   public appliedusers(vacid: number) {
     return this.httpClient.get('https://localhost:44361/gateway/vacancyrequest/' + vacid, this.httpOptions);
   }

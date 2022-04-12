@@ -17,6 +17,8 @@ export class ViewjobseekerprofiletoemployerComponent implements OnInit {
   loading = false;
   constructor(private route: ActivatedRoute, private router: Router, private jobseekerService: JobseekerService, private toastr: ToastrService) { }
 
+
+  //getting jobseeker profile to show to employer
   ngOnInit(): void {
     this.loading = true
     this.route.params.subscribe(params => {
@@ -70,6 +72,7 @@ export class ViewjobseekerprofiletoemployerComponent implements OnInit {
 
   }
 
+  //logout button
   onSubmit = () => {
 
 

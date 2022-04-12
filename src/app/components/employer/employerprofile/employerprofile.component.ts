@@ -16,6 +16,7 @@ export class EmployerprofileComponent implements OnInit {
   loading = false;
   constructor(private router: Router, private empService: EmployerService, private toastr: ToastrService) {
     this.loading = true;
+    //get profile details of employer
     this.empService.getemployer().subscribe((data) => {
 
       console.log(data)
@@ -36,9 +37,13 @@ export class EmployerprofileComponent implements OnInit {
   ngOnInit(): void {
 
   }
+
+  //navigating to update profile
   update() {
     this.router.navigate(['updateemployerprofile']);
   }
+
+  //logout button
   onSubmit = () => {
 
 

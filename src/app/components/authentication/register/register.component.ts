@@ -30,6 +30,8 @@ export class RegisterComponent implements OnInit {
     //update the ui
     this.userType = event.target.value;
   }
+
+  //register user
   onSubmit() {
     this.loading = true
     console.log("On submit")
@@ -51,11 +53,6 @@ export class RegisterComponent implements OnInit {
       this.toastr.error("Please fill proper information")
     }
     )
-    // this.userService.login(username,password).subscribe((data)=>{
-    //   console.log("response",data);
-    // },error=>{
-    //   console.log("error",error)
-    // }
-    // )
+    
   }
 }

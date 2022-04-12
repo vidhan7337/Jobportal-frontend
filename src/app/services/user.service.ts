@@ -11,6 +11,8 @@ export class UserService {
   baseUrl = 'https://localhost:44361/gateway';
   constructor(private httpClient: HttpClient) { }
 
+
+  //login user
   public login(username: string, password: string) {
     const a = {
       userName: username,
@@ -24,6 +26,8 @@ export class UserService {
     return this.httpClient.post<any>(this.baseUrl + "/login", body, httpOptions);
   }
 
+
+  //register user
   public register(username: string, password: string, fullname: string, email: string, phone: DecimalPipe, usertpe: string) {
     const a = {
       userName: username,
@@ -41,6 +45,8 @@ export class UserService {
     return this.httpClient.post<any>(this.baseUrl + "/register", body, httpOptions);
   }
 
+
+  //change password of user
   public changepassword(password: string, id: number) {
     const a = {
       fullName: window.localStorage.getItem("fullName"),
@@ -59,6 +65,7 @@ export class UserService {
 
   }
 
+  //get old password of user
   public getpassword(id: number) {
     return this.httpClient.get<any>(this.baseUrl + "/getpassword/" + id);
   }

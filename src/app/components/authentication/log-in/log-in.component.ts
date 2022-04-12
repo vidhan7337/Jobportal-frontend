@@ -22,6 +22,8 @@ export class LogInComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  //login user
   onSubmit() {
     this.loading = true
     console.log("On submit")

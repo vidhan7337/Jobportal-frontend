@@ -50,6 +50,8 @@ export class UpdatevacancyComponent implements OnInit {
       this.id = params['id'];
       console.log(params['id'])
     });
+
+    //employer details
     this.empService.getemployer().subscribe((data) => {
 
       console.log(data)
@@ -67,6 +69,7 @@ export class UpdatevacancyComponent implements OnInit {
 
     });
     this.loading = true
+    //vacancy details
     this.vacancyServuce.getvacancydetail(this.id).subscribe((data) => {
       this.vacancy = data
       console.log(this.vacancy)
@@ -86,6 +89,7 @@ export class UpdatevacancyComponent implements OnInit {
   }
 
 
+  //update vacancy
   save() {
     this.loading = false
     let x = this.datepipe.transform(this.date, 'yyyy-MM-dd');
@@ -127,6 +131,8 @@ export class UpdatevacancyComponent implements OnInit {
 
     }
   }
+
+  //logout button
   onSubmit = () => {
 
 

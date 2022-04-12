@@ -43,6 +43,7 @@ export class AddvacancyComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true
+    //getting employer details
     this.empService.getemployer().subscribe((data) => {
 
       console.log(data)
@@ -60,6 +61,7 @@ export class AddvacancyComponent implements OnInit {
   }
 
 
+  // adding new vacancy
   save() {
     this.loading = true
     let x = this.datepipe.transform(this.date, 'yyyy-MM-dd');

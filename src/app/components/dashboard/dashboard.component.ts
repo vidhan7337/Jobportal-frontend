@@ -25,9 +25,11 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
 
+    //checking for user role
     if (window.localStorage.getItem('usertype') == "Employer") {
       this.loading = true
       this.profile = "Employer";
+      //checking for employer details are added or not
       this.empService.getemployer().subscribe((data) => {
         this.profileaddedemp = true;
 
@@ -48,6 +50,7 @@ export class DashboardComponent implements OnInit {
     } else {
       this.loading = true
       this.profile = "JobSeeker";
+      //checking for jobseeker details are added or not
       this.jobseekerService.getjobseekerprofile().subscribe((data) => {
         this.profileaddedjs = true;
 
@@ -71,6 +74,8 @@ export class DashboardComponent implements OnInit {
 
 
   }
+
+  //logout button
   onSubmit = () => {
 
 

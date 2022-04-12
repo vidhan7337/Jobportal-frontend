@@ -39,6 +39,8 @@ export class AddemployerprofileComponent implements OnInit {
   ngOnInit(): void {
 
   }
+
+  //adding employer details
   save() {
     this.loading = true
     if (this.employerform.invalid) {
