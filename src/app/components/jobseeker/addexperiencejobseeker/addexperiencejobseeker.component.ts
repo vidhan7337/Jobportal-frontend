@@ -29,6 +29,8 @@ export class AddexperiencejobseekerComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  //logout button
   onSubmit = () => {
 
 
@@ -45,6 +47,8 @@ export class AddexperiencejobseekerComponent implements OnInit {
     window.localStorage.removeItem("fullName");
     window.localStorage.removeItem("phone");
   }
+
+  //add experience
   save() {
     this.loading = true
     if (this.experienceform.invalid) {

@@ -21,11 +21,14 @@ export class ViewcompanyprofiletojobseekerComponent implements OnInit {
       this.org = params['org'];
       console.log(params['org'])
     });
+    //get company details to show to jobseeker
     this.empService.getemployerbyname(this.org).subscribe((data) => {
       this.employer = data
       this.loading = false
     })
   }
+
+  //logout button
   onSubmit = () => {
 
 

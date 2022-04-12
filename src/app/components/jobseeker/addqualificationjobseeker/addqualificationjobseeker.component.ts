@@ -28,7 +28,7 @@ export class AddqualificationjobseekerComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
+//logout button
   onSubmit = () => {
     this.toastr.info("Logout successful")
     this.router.navigate(['/login']);
@@ -42,6 +42,8 @@ export class AddqualificationjobseekerComponent implements OnInit {
     window.localStorage.removeItem("fullName");
     window.localStorage.removeItem("phone");
   }
+
+  //add qualificaton of jobseeker
   save() {
     this.loading = true
     if (this.qualificationform.invalid) {

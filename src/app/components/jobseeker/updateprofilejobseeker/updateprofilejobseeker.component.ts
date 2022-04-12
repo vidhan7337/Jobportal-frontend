@@ -37,6 +37,7 @@ export class UpdateprofilejobseekerComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true
+    //get jobseeker profile 
     this.jobseekerService.getjobseekerprofileforshow(this.x).subscribe((data) => {
       this.jobseeker = data
       this.loading = false
@@ -51,6 +52,8 @@ export class UpdateprofilejobseekerComponent implements OnInit {
       }
     })
   }
+
+  //update jobseeker profile details
   save() {
     this.loading = true
     if (this.jobseekerform.invalid) {
@@ -82,6 +85,8 @@ export class UpdateprofilejobseekerComponent implements OnInit {
       })
     }
   }
+
+  //logout button
   onSubmit = () => {
 
 

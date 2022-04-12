@@ -35,6 +35,8 @@ export class AddprofilejobseekerComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  //add jobseeker profile details
   save() {
     this.loading = true
     if (this.jobseekerform.invalid) {

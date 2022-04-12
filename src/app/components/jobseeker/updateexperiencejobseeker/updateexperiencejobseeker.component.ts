@@ -37,6 +37,8 @@ export class UpdateexperiencejobseekerComponent implements OnInit {
       this.id = params['id'];
       console.log(params['id'])
     });
+
+    //get experience details
     this.jobseekerService.getsingleexperience(this.id).subscribe((data) => {
       this.experience = data
       this.loading = false
@@ -51,6 +53,8 @@ export class UpdateexperiencejobseekerComponent implements OnInit {
       }
     })
   }
+
+  //update experience
   save() {
     this.loading = true
     if (this.experienceform.invalid) {
@@ -87,6 +91,7 @@ export class UpdateexperiencejobseekerComponent implements OnInit {
       })
     }
   }
+  //logout button
   onSubmit = () => {
 
 

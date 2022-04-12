@@ -23,6 +23,8 @@ export class ShowprofilejobseekerComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true
+
+    //getting jobseeker profile
     this.jobseekerService.getjobseekerprofileforshow(this.x).subscribe((data) => {
       this.jobseeker = data;
       console.log(this.jobseeker)
@@ -38,6 +40,7 @@ export class ShowprofilejobseekerComponent implements OnInit {
       }
     })
     this.loading = true
+    //getting all qualification to show
     this.jobseekerService.getallqualifications(this.x).subscribe((data) => {
       this.qualificationList = data;
       console.log(this.qualificationList)
@@ -53,6 +56,7 @@ export class ShowprofilejobseekerComponent implements OnInit {
       }
     })
     this.loading = true
+     //getting all experience to show
     this.jobseekerService.getallexperience(this.x).subscribe((data) => {
       this.experienceList = data;
       console.log(this.experienceList)
@@ -68,9 +72,9 @@ export class ShowprofilejobseekerComponent implements OnInit {
       }
     })
   }
-
+  //delete experience
   removeexperience(id: number) {
-    // if(confirm("Are you sure you want to delete")==true){
+    
     this.jobseekerService.deleteexperience(id).subscribe((data) => {
       this.toastr.warning("Experience deleted")
       console.log(data)
@@ -79,12 +83,11 @@ export class ShowprofilejobseekerComponent implements OnInit {
       this.toastr.warning("something went wrong not able delete")
       console.log(error)
     })
-    // }else{
-
-    // }
+    
   }
+  //delete qualification
   removequalification(id: number) {
-    // if(confirm("Are you sure you want to delete")==true){
+    
     this.jobseekerService.deletequalification(id).subscribe((data) => {
       this.toastr.warning("Qualification deleted")
       console.log(data)
@@ -93,9 +96,7 @@ export class ShowprofilejobseekerComponent implements OnInit {
       this.toastr.warning("something went wrong not able delete")
       console.log(error)
     })
-    // }else{
-
-    // }
+    
   }
   //popup
   open(content: any, id: number) {
@@ -103,7 +104,7 @@ export class ShowprofilejobseekerComponent implements OnInit {
 
       this.removeexperience(id);
     }, (reason) => {
-      // this.remove(id);
+      
 
     });
   }
@@ -113,15 +114,17 @@ export class ShowprofilejobseekerComponent implements OnInit {
 
       this.removequalification(id);
     }, (reason) => {
-      // this.remove(id);
+     
 
     });
   }
 
-
+  //update screen
   update() {
     this.router.navigate(['updatejobseekerprofile']);
   }
+
+  //logout button
   onSubmit = () => {
 
 

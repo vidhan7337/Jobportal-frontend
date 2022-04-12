@@ -35,6 +35,7 @@ export class UpdatequalificationjobseekerComponent implements OnInit {
       this.id = params['id'];
       console.log(params['id'])
     });
+    //get qualification details of jobseeker
     this.jobseekerService.getsinglequalification(this.id).subscribe((data) => {
       this.qualification = data
       this.loading = false
@@ -50,6 +51,8 @@ export class UpdatequalificationjobseekerComponent implements OnInit {
     })
   }
 
+
+  //update qualification details
   save() {
     this.loading = true
     if (this.qualificationform.invalid) {
@@ -80,6 +83,8 @@ export class UpdatequalificationjobseekerComponent implements OnInit {
       })
     }
   }
+
+  //logout button
   onSubmit = () => {
 
 
